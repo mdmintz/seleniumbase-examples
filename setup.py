@@ -18,7 +18,7 @@ except IOError:
     long_description = 'The complete web automation library.'
 
 setup(
-    name='examples',
+    name='sb-examples',
     version='0.0.0',
     description='Examples of SeleniumBase',
     long_description=long_description,
