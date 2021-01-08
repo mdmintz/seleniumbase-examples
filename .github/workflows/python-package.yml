@@ -54,4 +54,7 @@ jobs:
         pytest examples/boilerplates/boilerplate_test.py --browser=chrome --headless -v -s --junit-xml=junit/test-results.xml
     - name: Run pytest boilerplate_test.py --browser=firefox --headless
       run: |
+        pytest examples/boilerplates/boilerplate_test.py --browser=firefox --headless -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/ --browser=chrome --rs --headless -v -s --dashboard
+      run: |
         pytest examples/ --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard
