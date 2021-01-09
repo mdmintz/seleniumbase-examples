@@ -1,3 +1,4 @@
+""" Kanban board testing example """
 from seleniumbase import BaseCase
 
 
