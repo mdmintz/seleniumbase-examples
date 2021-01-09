@@ -1,6 +1,8 @@
+import pytest
 from seleniumbase import BaseCase
 
 
+@pytest.mark.ready
 class MyTestClass(BaseCase):
 
     def test_demo_site(self):
