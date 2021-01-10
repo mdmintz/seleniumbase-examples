@@ -15,8 +15,10 @@ class MyTestClass(BaseCase):
         self.add_board("In progress")
         self.add_board("Done")
         self.set_board_data()
-        self.click("div.cp-corner-dontshow span.fa", timeout=15)
+        if self.is_element_visible("div.cp-corner-dontshow span.fa"):
+            self.click("div.cp-corner-dontshow span.fa")
 
+        # Add items to the first board
         self.add_item_to_board("Item 1", "To Do")
         self.add_item_to_board("Item 2", "To Do")
         self.add_item_to_board("Item 3", "To Do")
@@ -24,11 +26,13 @@ class MyTestClass(BaseCase):
         self.add_item_to_board("Item 5", "To Do")
         self.add_item_to_board("Item 6", "To Do")
 
+        # Drag and drop items onto different boards
         self.move_item_to_board("Item 4", "In progress")
         self.move_item_to_board("Item 3", "In progress")
         self.move_item_to_board("Item 6", "Done")
         self.move_item_to_board("Item 5", "Done")
 
+        # Verify boards and items
         self.set_board_data()
         for b_name in self.board_data.keys():
             self.assert_text(
@@ -36,6 +40,16 @@ class MyTestClass(BaseCase):
         for item_name in self.all_items.keys():
             self.assert_text(
                 item_name, 'div[data-eid="%s"]' % self.all_items[item_name][0])
+
+        # Verify the visibility status of the kanban trash from class changes
+        self.set_attribute(
+            '#kanban-trash', 'class', 'kanban-trash kanban-trash-suggest')
+        self.assert_element_visible('#kanban-trash')
+        self.set_attribute(
+            '#kanban-trash', 'class', 'kanban-trash kanban-trash-active')
+        self.assert_element_visible('#kanban-trash')
+        self.set_attribute('#kanban-trash', 'class', 'kanban-trash')
+        self.assert_element_not_visible('#kanban-trash')
 
     def set_board_data(self, soup=None, get=False):
         board_data = {}  # Dictionary -> {name: (data_id, position)}
