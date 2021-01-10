@@ -26,7 +26,7 @@ jobs:
         sudo apt-get install mysql-server
         sudo apt-get install mysql-client
         sudo service mysql start
-        mysqladmin -u root -p'' password test
+        mysqladmin -u root -p'root' password test
 
     - name: Install dependencies
       run: |
