@@ -23,10 +23,9 @@ jobs:
           DB_CONNECTION: mysql
           DB_PORT: 3306
           DB_USER: root
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          DB_PASSWORD: test
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - uses: actions/checkout@v1
@@ -39,7 +38,6 @@ jobs:
         sudo /etc/init.d/mysql start
         sudo mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
         sudo mysql -h 127.0.0.1 -u root --password test test_db < create_db_tables.sql
-        mysqladmin -u root password test
         sudo /etc/init.d/mysql restart
     - name: Install dependencies
       run: |
