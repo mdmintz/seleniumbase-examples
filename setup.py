@@ -19,7 +19,7 @@ except IOError:
 
 setup(
     name='sb-examples',
-    version='0.0.0',
+    version='0.1.0',
     description='Examples of SeleniumBase',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -49,7 +49,7 @@ setup(
     ],
     python_requires='>=3.6',
     install_requires=[
-        'seleniumbase>=1.51.13',
+        'seleniumbase>=1.51.14',
         ],
     packages=[
         ],
