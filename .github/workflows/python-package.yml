@@ -26,8 +26,7 @@ jobs:
         sudo apt-get install mysql-server
         sudo apt-get install mysql-client
         sudo service mysql start
-        mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
-        mysql -h 127.0.0.1 -u root test_db < create_db_tables.sql
+
 
     - name: Install dependencies
       run: |
