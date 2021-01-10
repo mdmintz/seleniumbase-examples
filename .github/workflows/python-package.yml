@@ -35,7 +35,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Prepare MySQL
       run: |
-        sudo /etc/init.d/mysql start
+        sudo /etc/init.d/mysql start -p test
         sudo mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
         sudo mysql -h 127.0.0.1 -u root --password test test_db < create_db_tables.sql
         sudo /etc/init.d/mysql restart
