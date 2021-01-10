@@ -36,11 +36,11 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Prepare MySQL
       run: |
-        sudo service mysql start
+        sudo /etc/init.d/mysql start
         sudo mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
         sudo mysql -h 127.0.0.1 -u root --password test test_db < create_db_tables.sql
         mysqladmin -u root password test
-        sudo service mysql restart
+        sudo /etc/init.d/mysql restart
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
