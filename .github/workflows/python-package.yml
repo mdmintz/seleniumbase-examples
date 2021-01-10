@@ -21,7 +21,7 @@ jobs:
         env:
           DB_DATABASE: test_db
           DB_CONNECTION: mysql
-          DB_PORT: 33306
+          DB_PORT: 3306
           DB_USER: root
           DB_PASSWORD: test
 
