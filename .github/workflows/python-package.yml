@@ -36,7 +36,7 @@ jobs:
         sudo /etc/init.d/mysql start
     - name: Create DB tables
       run: |
-        sudo mysql -h 127.0.0.1 -u root password test test_db < create_db_tables.sql
+        sudo mysql -h 127.0.0.1 -u root --password test test_db < create_db_tables.sql
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
