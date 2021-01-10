@@ -34,12 +34,6 @@ jobs:
     - name: Start the MySQL DB
       run: |
         sudo /etc/init.d/mysql start
-    - name: Set DB Password
-      run: |
-        mysqladmin -u root password test
-    - name: Restart the MySQL DB
-      run: |
-        sudo /etc/init.d/mysql restart
     - name: Create DB tables
       run: |
         sudo mysql -h 127.0.0.1 -u root test_db < create_db_tables.sql
