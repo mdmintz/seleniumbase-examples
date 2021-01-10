@@ -15,18 +15,17 @@ jobs:
       matrix:
         python-version: [3.6, 3.7, 3.8, 3.9]
     services:
-      mysql-service:
-        image: mysql:5.7
+      mysql:
+        image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: "test"
-          MYSQL_DATABASE: "test_db"
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: root
+          MYSQL_PASSWORD: test
         ports:
           - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
 
     steps:
     - uses: actions/checkout@v1
