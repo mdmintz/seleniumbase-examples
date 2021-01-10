@@ -18,8 +18,8 @@ jobs:
     services:
       mysql-service:
         image: mysql:5.7
-          MYSQL_DATABASE: test_db
           MYSQL_ROOT_PASSWORD: test
+          MYSQL_DATABASE: test_db
 
     steps:
     - uses: actions/checkout@v1
