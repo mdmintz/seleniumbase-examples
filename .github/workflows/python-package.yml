@@ -16,16 +16,16 @@ jobs:
         python-version: [3.6, 3.7, 3.8, 3.9]
 
     services:
-      mysql-service:
+      mysql:
         image: mysql:5.7
+        ports:
+          - 3306:3306
         env:
           DB_DATABASE: test_db
-          DB_CONNECTION: mysql
           DB_PORT: 3306
           DB_USER: root
           DB_PASSWORD: test
-        ports:
-          - 3306:3306
+        options: "--name=mysqld"
 
     steps:
     - uses: actions/checkout@v1
@@ -35,10 +35,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Prepare MySQL
       run: |
-        sudo /etc/init.d/mysql start -p test
-        sudo mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
-        sudo mysql -h 127.0.0.1 -u root --password test test_db < create_db_tables.sql
-        sudo /etc/init.d/mysql restart
+        mysql -h127.0.0.1 -uroot -ptest -e "SET GLOBAL local_infile=on"
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
