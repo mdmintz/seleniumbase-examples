@@ -31,6 +31,9 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Start the MySQL DB
+      run: |
+        sudo /etc/init.d/mysql start
     - name: Create DB tables
       run: |
         sudo mysql -h 127.0.0.1 -u root test_db < create_db_tables.sql
