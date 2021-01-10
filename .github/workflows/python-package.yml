@@ -35,7 +35,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Create DB tables
       run: |
-        mysql -h 127.0.0.1 -u root test_db < seleniumbase/core/create_db_tables.sql
+        mysql -h 127.0.0.1 -u root test_db < https://raw.githubusercontent.com/seleniumbase/SeleniumBase/master/seleniumbase/core/create_db_tables.sql
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
