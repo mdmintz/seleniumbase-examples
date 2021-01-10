@@ -22,9 +22,8 @@ jobs:
           - 3306:3306
         env:
           DB_DATABASE: test_db
-          DB_PORT: 3306
           DB_USER: root
-          DB_PASSWORD: test
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
         options: "--name=mysqld"
 
     steps:
@@ -35,7 +34,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Prepare MySQL
       run: |
-        mysql -h127.0.0.1 -uroot -ptest -e "SET GLOBAL local_infile=on"
+        mysql -h127.0.0.1 -uroot -e "SET GLOBAL local_infile=on"
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
