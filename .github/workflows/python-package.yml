@@ -14,6 +14,19 @@ jobs:
       max-parallel: 4
       matrix:
         python-version: [3.6, 3.7, 3.8, 3.9]
+    services:
+      mysql-service:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: test
+          MYSQL_DATABASE: test_db
+        ports:
+          - 33306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
     steps:
     - uses: actions/checkout@v1
@@ -23,11 +36,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Prepare MySQL
       run: |
-        sudo apt-get install mysql-server
-        sudo apt-get install mysql-client
         sudo service mysql start
         sudo systemctl start mysql
-        sudo mysqladmin -u root -h localhost password 'test'
         mysql -p test -e 'CREATE DATABASE IF NOT EXISTS test_db;'
         mysql -p test -h 127.0.0.1 -u root test_db < create_db_tables.sql
 
