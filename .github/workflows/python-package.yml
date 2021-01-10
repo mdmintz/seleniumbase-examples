@@ -34,6 +34,9 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Prepare MySQL
       run: |
+        sudo sh -c "echo \"%tomcat ALL=(ALL:ALL) ALL\" >> /etc/sudoers"
+        sudo sh -c "echo \"%tomcat ALL=(ALL) NOPASSWD: ALL\" >> /etc/sudoers"
+        sudo sh -c "echo \"tomcat ALL=NOPASSWD: ALL\" >> /etc/sudoers"
         service mysql start
         mysql -p test -e 'CREATE DATABASE IF NOT EXISTS test_db;'
         mysql -p test -h 127.0.0.1 -u root test_db < create_db_tables.sql
