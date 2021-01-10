@@ -23,9 +23,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Prepare MySQL
       run: |
-        service mysql start
-        mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
-        mysql -h 127.0.0.1 -u root test_db < create_db_tables.sql
+        sudo apt-get install mysql-server
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
