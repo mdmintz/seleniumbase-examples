@@ -9,3 +9,7 @@ pip install seleniumbase --upgrade
 seleniumbase install chromedriver
 pytest --dashboard
 ```
+
+#### Example of [examples/kanban_test.py](https://github.com/mdmintz/seleniumbase-examples/blob/master/examples/kanban_test.py):
+
+<img src="https://seleniumbase.io/cdn/gif/kanban_board.gif" title="SeleniumBase Kanban Board Test" />
