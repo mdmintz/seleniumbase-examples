@@ -91,9 +91,12 @@ class MyTestClass(BaseCase):
 
     def add_board(self, name):
         self.click("#kanban-addboard")
+        self.sleep(0.2)
         num_boards = len(self.find_visible_elements('[alt="Edit this board"]'))
         self.click_nth_visible_element('[alt="Edit this board"]', num_boards)
+        self.sleep(0.1)
         self.type("input#cp-kanban-edit-title", name)
+        self.sleep(0.1)
         self.click("button.primary")
 
     def add_item_to_board(self, name, board):
