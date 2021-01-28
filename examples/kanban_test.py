@@ -9,14 +9,15 @@ class MyTestClass(BaseCase):
         self.switch_to_frame("iframe#sbox-iframe")
         self.click("button.cp-corner-cancel", timeout=15)
         self.click("span.cp-help-close")
+        self.remove_popup_if_visible()
 
         self.delete_all_boards()
         self.add_board("To Do")
         self.add_board("In progress")
         self.add_board("Done")
+        self.remove_popup_if_visible()
         self.set_board_data()
-        if self.is_element_visible("div.cp-corner-dontshow span.fa"):
-            self.click("div.cp-corner-dontshow span.fa")
+        self.remove_popup_if_visible()
 
         # Add items to the first board
         self.add_item_to_board("Item 1", "To Do")
@@ -25,6 +26,7 @@ class MyTestClass(BaseCase):
         self.add_item_to_board("Item 4", "To Do")
         self.add_item_to_board("Item 5", "To Do")
         self.add_item_to_board("Item 6", "To Do")
+        self.remove_popup_if_visible()
 
         # Drag and drop items onto different boards
         self.move_item_to_board("Item 4", "In progress")
@@ -50,6 +52,10 @@ class MyTestClass(BaseCase):
         self.assert_element_visible('#kanban-trash')
         self.set_attribute('#kanban-trash', 'class', 'kanban-trash')
         self.assert_element_not_visible('#kanban-trash')
+
+    def remove_popup_if_visible(self):
+        if self.is_element_visible("div.cp-corner-dontshow span.fa"):
+            self.click("div.cp-corner-dontshow span.fa")
 
     def set_board_data(self, soup=None, get=False):
         board_data = {}  # Dictionary -> {name: (data_id, position)}
@@ -102,11 +108,11 @@ class MyTestClass(BaseCase):
     def add_item_to_board(self, name, board):
         board_id = self.board_data[board][0]
         self.sleep(0.1)
-        self.click('div[data-id="%s"] i.cptools-add-bottom' % board_id)
+        self.js_click('div[data-id="%s"] i.cptools-add-bottom' % board_id)
         self.sleep(0.1)
-        self.click('input#kanban-edit')
+        self.js_click('input#kanban-edit')
         self.type('input#kanban-edit', name)
-        self.click(".cp-toolbar-spinner")
+        self.js_click(".cp-toolbar-spinner")
 
     def move_item_to_board(self, name, board):
         self.set_board_data()
