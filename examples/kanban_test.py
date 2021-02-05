@@ -9,7 +9,7 @@ class MyTestClass(BaseCase):
     def test_kanban_board(self):
         self.open("https://cryptpad.fr/kanban/")
         self.switch_to_frame("iframe#sbox-iframe")
-        self.click("button.cp-corner-cancel", timeout=15)
+        self.click("button.cp-corner-cancel", timeout=30)
         self.click("span.cp-help-close")
 
         self.delete_all_boards()
