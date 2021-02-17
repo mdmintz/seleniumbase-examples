@@ -24,6 +24,7 @@ class MyTestClass(BaseCase):
             self.sleep(0.1)
             self.click("div.cp-corner-dontshow span.fa")
             print("Pop-up closed!")
+            self.sleep(0.3)
 
         # Add items to the first board
         self.add_item_to_board("Item 1", "To Do")
@@ -62,6 +63,7 @@ class MyTestClass(BaseCase):
         if self.is_element_visible("div.cp-corner-dontshow span.fa"):
             self.click("div.cp-corner-dontshow span.fa")
             self.popup_removed = True
+            self.sleep(0.3)
 
     def set_board_data(self, soup=None, get=False):
         board_data = {}  # Dictionary -> {name: (data_id, position)}
@@ -105,22 +107,26 @@ class MyTestClass(BaseCase):
     def add_board(self, name):
         self.remove_popup_if_visible()
         self.click("#kanban-addboard")
-        self.sleep(0.2)
+        self.sleep(0.3)
+        self.remove_popup_if_visible()
         num_boards = len(self.find_visible_elements('[alt="Edit this board"]'))
+        self.remove_popup_if_visible()
         self.click_nth_visible_element('[alt="Edit this board"]', num_boards)
         self.sleep(0.2)
+        self.remove_popup_if_visible()
         self.type("input#cp-kanban-edit-title", name)
         self.sleep(0.2)
+        self.remove_popup_if_visible()
         self.click("button.primary")
 
     def add_item_to_board(self, name, board):
         self.remove_popup_if_visible()
         board_id = self.board_data[board][0]
         self.sleep(0.2)
-        self.click('div[data-id="%s"] i.cptools-add-bottom' % board_id)
+        self.remove_popup_if_visible()
+        self.js_click('div[data-id="%s"] i.cptools-add-bottom' % board_id)
         self.sleep(0.2)
-        self.click('input#kanban-edit')
-        self.type('input#kanban-edit', name)
+        self.js_type('input#kanban-edit', name)
         self.click(".cp-toolbar-spinner")
 
     def move_item_to_board(self, name, board):
