@@ -1,8 +1,4 @@
-"""
-Testing https://developsense.com/calendar/calendar.html
-Validate pop-up messages for actual vs expected values.
-Expecting Success when [Earliest time] < [Latest time].
-"""
+""" Testing https://developsense.com/calendar/calendar.html """
 
 from seleniumbase import BaseCase
 
