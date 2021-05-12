@@ -10,7 +10,7 @@ class MyTestClass(BaseCase):
         self.open("https://cryptpad.fr/kanban/")
         self.switch_to_frame("iframe#sbox-iframe")
         self.click("button.cp-corner-cancel", timeout=30)
-        self.click("span.cp-help-close")
+        self.click("div.cp-corner-dontshow span")
 
         self.delete_all_boards()
         self.add_board("To Do")
@@ -20,11 +20,11 @@ class MyTestClass(BaseCase):
 
         if not self.popup_removed:
             print("Waiting to close pop-up...")
-            self.wait_for_element_visible("div.cp-corner-dontshow span.fa")
-            self.sleep(0.1)
-            self.click("div.cp-corner-dontshow span.fa")
-            print("Pop-up closed!")
-            self.sleep(0.3)
+            if self.is_element_visible("div.cp-corner-dontshow span"):
+                self.sleep(0.1)
+                self.click("div.cp-corner-dontshow span")
+                print("Pop-up closed!")
+                self.sleep(0.3)
 
         # Add items to the first board
         self.add_item_to_board("Item 1", "To Do")
@@ -60,8 +60,8 @@ class MyTestClass(BaseCase):
         self.assert_element_not_visible('#kanban-trash')
 
     def remove_popup_if_visible(self):
-        if self.is_element_visible("div.cp-corner-dontshow span.fa"):
-            self.click("div.cp-corner-dontshow span.fa")
+        if self.is_element_visible("div.cp-corner-dontshow span"):
+            self.click("div.cp-corner-dontshow span")
             self.popup_removed = True
             self.sleep(0.3)
 
