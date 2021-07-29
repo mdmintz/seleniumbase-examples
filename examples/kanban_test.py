@@ -19,6 +19,7 @@ class MyTestClass(BaseCase):
         self.set_board_data()
 
         if not self.popup_removed:
+            self.sleep(1)
             print("Waiting to close pop-up...")
             if self.is_element_visible("div.cp-corner-dontshow span"):
                 self.sleep(0.1)
@@ -103,30 +104,38 @@ class MyTestClass(BaseCase):
                 self.click('[alt="Edit this board"]')
                 self.click('button.danger')
                 self.click('div.cp-button-confirm')
+                self.sleep(0.1)
 
     def add_board(self, name):
+        self.sleep(0.1)
         self.remove_popup_if_visible()
         self.click("#kanban-addboard")
         self.sleep(0.3)
         self.remove_popup_if_visible()
         num_boards = len(self.find_visible_elements('[alt="Edit this board"]'))
         self.remove_popup_if_visible()
+        self.sleep(0.1)
         self.click_nth_visible_element('[alt="Edit this board"]', num_boards)
-        self.sleep(0.2)
+        self.sleep(0.3)
         self.remove_popup_if_visible()
         self.type("input#cp-kanban-edit-title", name)
-        self.sleep(0.2)
+        self.sleep(0.4)
         self.remove_popup_if_visible()
         self.click("button.primary")
+        self.sleep(0.1)
 
     def add_item_to_board(self, name, board):
         self.remove_popup_if_visible()
         board_id = self.board_data[board][0]
-        self.sleep(0.2)
+        self.sleep(0.1)
         self.remove_popup_if_visible()
+        self.sleep(0.1)
+        self.wait_for_element(
+            'div[data-id="%s"] i.cptools-add-bottom' % board_id)
         self.js_click('div[data-id="%s"] i.cptools-add-bottom' % board_id)
-        self.sleep(0.2)
+        self.sleep(0.3)
         self.js_type('input#kanban-edit', name)
+        self.sleep(0.1)
         self.click(".cp-toolbar-spinner")
 
     def move_item_to_board(self, name, board):
