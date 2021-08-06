@@ -49,7 +49,7 @@ setup(
     ],
     python_requires='>=3.6',
     install_requires=[
-        'seleniumbase>=1.63.20',
+        'seleniumbase>=1.63.21',
         ],
     packages=[
         ],
