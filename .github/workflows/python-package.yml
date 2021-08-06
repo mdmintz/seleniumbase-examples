@@ -52,6 +52,9 @@ jobs:
       run: |
         echo "def test_1(): pass" > nothing.py
         pytest nothing.py
+    - name: Upgrade chromedriver to match the Chrome version
+      run: |
+        pytest examples/upgrade_chromedriver.py
     - name: Run pytest boilerplate_test.py --browser=chrome --headless
       run: |
         pytest examples/boilerplates/boilerplate_test.py --browser=chrome --headless -v -s --junit-xml=junit/test-results.xml
