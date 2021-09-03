@@ -38,6 +38,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Topic :: Internet",
         "Topic :: Software Development",
         "Topic :: Software Development :: Quality Assurance",
@@ -49,7 +50,7 @@ setup(
     ],
     python_requires='>=3.6',
     install_requires=[
-        'seleniumbase>=1.64.1',
+        'seleniumbase>=1.65.1',
         ],
     packages=[
         ],
