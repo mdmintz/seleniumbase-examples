@@ -63,9 +63,11 @@ class MyTestClass(BaseCase):
         self.assert_true(self.is_selected("#radioButton2"))
 
         # Verify that clicking a checkbox makes it selected
+        self.assert_element_not_visible("img#logo")
         self.assert_false(self.is_selected("#checkBox1"))
         self.click("#checkBox1")
         self.assert_true(self.is_selected("#checkBox1"))
+        self.assert_element("img#logo")
 
         # Verify clicking on multiple elements with one call
         self.assert_false(self.is_selected("#checkBox2"))
@@ -85,13 +87,21 @@ class MyTestClass(BaseCase):
         self.assert_true(self.is_selected(".fBox"))
         self.switch_to_default_content()
 
+        # Verify Drag and Drop
+        self.assert_element_not_visible("div#drop2 img#logo")
+        self.drag_and_drop("img#logo", "div#drop2")
+        self.assert_element("div#drop2 img#logo")
+
         # Assert link text
         self.assert_link_text("seleniumbase.com")
         self.assert_link_text("SeleniumBase on GitHub")
         self.assert_link_text("seleniumbase.io")
 
         # Click link text
-        self.click_link_text("SeleniumBase Demo Page")
+        self.click_link("SeleniumBase Demo Page")
 
         # Assert exact text
         self.assert_exact_text("Demo Page", "h1")
+
+        # Highlight a page element (Also asserts visibility)
+        self.highlight("h2")
