@@ -1,1 +1,2 @@
 seleniumbase>=1.66.0
+sbvirtualdisplay>=1.0.0
