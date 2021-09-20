@@ -27,8 +27,8 @@ ENV/
 VENV/
 env.bak/
 venv.bak/
-sbase
-sbase*
+.sbase
+.sbase*
 seleniumbase_env
 seleniumbase_venv
 sbase_env
@@ -99,6 +99,9 @@ report.xml
 
 # Dashboard
 dashboard.html
+dashboard.json
+dash_pie.json
+dashboard.lock
 
 # Allure Reports / Results
 allure_report
@@ -121,6 +124,9 @@ images_exported
 # Cookies
 saved_cookies
 
+# Recordings
+recordings
+
 # Automated Visual Testing
 visual_baseline
 
@@ -134,6 +140,7 @@ docs/*/*/*/*.md
 # Other
 selenium-server-standalone.jar
 proxy.zip
+proxy.lock
 verbose_hub_server.dat
 verbose_node_server.dat
 ip_of_grid_hub.dat
@@ -141,4 +148,5 @@ downloaded_files
 archived_files
 assets
 temp
+temp_*/
 node_modules
