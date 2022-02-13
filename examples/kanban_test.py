@@ -129,9 +129,10 @@ class MyTestClass(BaseCase):
         board_id = self.board_data[board][0]
         self.sleep(0.1)
         self.remove_popup_if_visible()
-        self.sleep(0.1)
         self.wait_for_element(
             'div[data-id="%s"] i.cptools-add-bottom' % board_id)
+        self.sleep(0.05)
+        self.remove_popup_if_visible()
         self.js_click('div[data-id="%s"] i.cptools-add-bottom' % board_id)
         self.sleep(0.3)
         self.js_type('input#kanban-edit', name)
