@@ -1,2 +1,2 @@
-seleniumbase>=2.4.14
+seleniumbase>=2.4.19
 sbvirtualdisplay>=1.0.0
