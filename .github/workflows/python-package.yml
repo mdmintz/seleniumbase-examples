@@ -41,6 +41,7 @@ jobs:
       if: matrix.os == 'ubuntu-18.04'
       run: |
         sudo apt install google-chrome-stable
+        sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
         sudo apt install microsoft-edge-stable
         sudo apt-get install firefox
     - name: Check the console scripts interface
