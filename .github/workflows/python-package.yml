@@ -4,6 +4,8 @@ on:
     branches: [ master ]
   pull_request:
     branches:
+  workflow_dispatch:
+    branches:
 
 jobs:
   build:
@@ -76,3 +78,6 @@ jobs:
     - name: Run pytest -m ready --browser=chrome --rs --headless -v -s --dashboard
       run: |
         pytest -m ready --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard
+    - name: Run pytest examples/wordle_test.py --xvfb -v -s
+      run: |
+        pytest examples/wordle_test.py --xvfb -v -s
