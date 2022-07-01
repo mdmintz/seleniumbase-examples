@@ -1,9 +1,9 @@
-""" Solve the Wordle game using SeleniumBase. """
+""" Solve the Wordle game using SeleniumBase.
+    The latest version of Wordle no longer uses Shadow-DOM. """
 
 import ast
 import random
 import requests
-from seleniumbase import __version__
 from seleniumbase import BaseCase
 
 
@@ -53,37 +53,34 @@ class WordleTests(BaseCase):
             message = "This test doesn't run in headless mode!"
             print(message)
             self.skip(message)
-        version = [int(i) for i in __version__.split(".") if i.isdigit()]
-        if version < [2, 4, 4]:
-            message = "This test requires SeleniumBase 2.4.4 or newer!"
-            print(message)
-            self.skip(message)
 
     def test_wordle(self):
         self.skip_if_incorrect_env()
         self.open("https://www.nytimes.com/games/wordle/index.html")
-        self.click("game-app::shadow game-modal::shadow game-icon")
+        self.click('svg[data-testid="icon-close"]')
         self.initialize_word_list()
-        keyboard_base = "game-app::shadow game-keyboard::shadow "
         word = random.choice(self.word_list)
-        total_attempts = 0
+        num_attempts = 0
         success = False
         for attempt in range(6):
-            total_attempts += 1
+            num_attempts += 1
             word = random.choice(self.word_list)
             letters = []
             for letter in word:
                 letters.append(letter)
                 button = 'button[data-key="%s"]' % letter
-                self.click(keyboard_base + button)
-            button = "button.one-and-a-half"
-            self.click(keyboard_base + button)
-            row = 'game-app::shadow game-row[letters="%s"]::shadow ' % word
-            tile = row + "game-tile:nth-of-type(%s)"
-            self.wait_for_element(tile % "5" + '::shadow [data-state*="e"]')
+                self.click(button)
+            button = 'button[class*="oneAndAHalf"]'
+            self.click(button)
+            row = (
+                'div[class*="lbzlf"] div[class*="Row-module"]:nth-of-type(%s) '
+                % num_attempts
+            )
+            tile = row + 'div:nth-child(%s) div[class*="module_tile__3ayIZ"]'
+            self.wait_for_element(tile % "5" + '[data-state*="e"]')
             letter_status = []
             for i in range(1, 6):
-                letter_eval = self.get_attribute(tile % str(i), "evaluation")
+                letter_eval = self.get_attribute(tile % str(i), "data-state")
                 letter_status.append(letter_eval)
             if letter_status.count("correct") == 5:
                 success = True
@@ -92,7 +89,9 @@ class WordleTests(BaseCase):
             self.modify_word_list(word, letter_status)
 
         self.save_screenshot_to_logs()
-        print('\nWord: "%s"\nAttempts: %s' % (word.upper(), total_attempts))
-        if not success:
+        if success:
+            print('\nWord: "%s"\nAttempts: %s' % (word.upper(), num_attempts))
+        else:
+            print('Final guess: "%s" (Not the correct word!)' % word.upper())
             self.fail("Unable to solve for the correct word in 6 attempts!")
         self.sleep(3)
