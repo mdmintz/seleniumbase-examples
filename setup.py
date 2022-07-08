@@ -50,7 +50,7 @@ setup(
     ],
     python_requires='>=3.6',
     install_requires=[
-        'seleniumbase>=3.3.7',
+        'seleniumbase>=3.4.0',
         'sbvirtualdisplay>=1.1.0',
         ],
     packages=[
