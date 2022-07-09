@@ -84,6 +84,9 @@ jobs:
     - name: Run pytest examples/test_canvas.py --xvfb -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_canvas.py --xvfb -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_mfa_login.py --xvfb -v -s --junit-xml=junit/test-results.xml
+      run: |
+        pytest examples/test_mfa_login.py --xvfb -v -s --junit-xml=junit/test-results.xml
     - name: Run pytest examples/test_drag_and_drop.py --xvfb -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_drag_and_drop.py --xvfb -v -s --junit-xml=junit/test-results.xml
