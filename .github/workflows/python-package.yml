@@ -78,9 +78,9 @@ jobs:
     - name: Run pytest boilerplate_test.py --browser=firefox --headless
       run: |
         pytest examples/boilerplates/boilerplate_test.py --browser=firefox --headless -v -s --junit-xml=junit/test-results.xml
-    - name: Run pytest examples/test_calculator.py --xvfb -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_calculator.py --xvfb -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml
     - name: Run pytest examples/test_canvas.py --xvfb -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_canvas.py --xvfb -v -s --junit-xml=junit/test-results.xml
