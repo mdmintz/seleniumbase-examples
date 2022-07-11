@@ -3,7 +3,8 @@ from seleniumbase import BaseCase
 
 class CalculatorTests(BaseCase):
     def test_basic_math(self):
-        self.open("seleniumbase.io/apps/calculator")
+        self.open("seleniumbase.io")
+        self.click('a[href*="seleniumbase.io/apps/calculator"]')
 
         # test_42_divided_by_7_equals_6
         self.click("#clear")
@@ -36,7 +37,8 @@ class CalculatorTests(BaseCase):
         self.assert_exact_text("54", "input#output")
 
     def test_special_code(self):
-        self.open("seleniumbase.io/apps/calculator")
+        self.open("seleniumbase.io")
+        self.click('a[href*="seleniumbase.io/apps/calculator"]')
         # Test a secret code that sends you to seleniumbase.io
         self.click("#clear")
         self.click('button[id="("]')
