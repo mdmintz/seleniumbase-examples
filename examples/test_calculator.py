@@ -4,7 +4,7 @@ from seleniumbase import BaseCase
 class CalculatorTests(BaseCase):
     def test_basic_math(self):
         self.open("seleniumbase.io")
-        self.click('a[href*="seleniumbase.io/apps/calculator"]')
+        self.js_click('a[href*="seleniumbase.io/apps/calculator"]')
 
         # test_42_divided_by_7_equals_6
         self.click("#clear")
@@ -38,7 +38,7 @@ class CalculatorTests(BaseCase):
 
     def test_special_code(self):
         self.open("seleniumbase.io")
-        self.click('a[href*="seleniumbase.io/apps/calculator"]')
+        self.js_click('a[href*="seleniumbase.io/apps/calculator"]')
         # Test a secret code that sends you to seleniumbase.io
         self.click("#clear")
         self.click('button[id="("]')
@@ -52,6 +52,6 @@ class CalculatorTests(BaseCase):
         self.click('button[id=")"]')
         self.click("button#equal")
         self.highlight('img[alt="SeleniumBase"]')
-        self.click('a[href*="seleniumbase.io/apps/calculator"]')
+        self.js_click('a[href*="seleniumbase.io/apps/calculator"]')
         self.click("#clear")
         self.highlight('a[href*="seleniumbase.io/apps/calculator"]')
