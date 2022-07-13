@@ -6,7 +6,7 @@ On newer versions of Python, you may replace "testdir" with "pytester".
 import subprocess
 
 
-class UpgradeChromedriverTests():
+class TestUpgradeChromedriver:
     def basic_run(self, testdir):
         testdir.makepyfile(
             """
@@ -31,7 +31,7 @@ class UpgradeChromedriverTests():
                     major_chromedriver_ver = chromedriver_ver.split(".")[0]
                     if major_chromedriver_ver != major_chrome_ver:
                         subprocess.check_call(
-                            "sbase install chromedriver %s" % major_chrome_ver,
+                            "sbase get chromedriver %s" % major_chrome_ver,
                             shell=True
                         )
             """
@@ -63,7 +63,7 @@ class UpgradeChromedriverTests():
                         print(
                             "* The version of chromedriver is too low!\\n"
                             "* Try upgrading to chromedriver %s manually:\\n"
-                            "* >>> sbase install chromedriver %s <<<"
+                            "* >>> sbase get chromedriver %s <<<"
                             % (major_chrome_ver, major_chrome_ver)
                         )
                     else:
@@ -71,7 +71,7 @@ class UpgradeChromedriverTests():
                         print(
                             "* The version of chromedriver is too high!\\n"
                             "* Try downgrading to chromedriver %s manually:\\n"
-                            "* >>> sbase install chromedriver %s <<<"
+                            "* >>> sbase get chromedriver %s <<<"
                             % (major_chrome_ver, major_chrome_ver)
                         )
             """
