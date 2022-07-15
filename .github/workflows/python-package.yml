@@ -79,25 +79,25 @@ jobs:
         pytest examples/boilerplates/boilerplate_test.py --browser=firefox --headless -v -s --junit-xml=junit/test-results.xml
     - name: Run pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_canvas.py --xvfb -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_canvas.py --xvfb -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_canvas.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_mfa_login.py --xvfb -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_mfa_login.py --xvfb -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_mfa_login.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_drag_and_drop.py --xvfb -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_drag_and_drop.py --xvfb -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_drag_and_drop.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_demo_site.py --xvfb -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_demo_site.py --xvfb -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_demo_site.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_docs_site.py --xvfb -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_docs_site.py --xvfb -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_docs_site.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest -m ready --browser=chrome --rs --headless -v -s --dashboard
       run: |
-        pytest -m ready --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard
+        pytest -m ready --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
     - name: Run pytest examples/wordle_test.py --xvfb -v -s --reruns=3
       run: |
         pytest examples/wordle_test.py --xvfb -v -s --reruns=3
