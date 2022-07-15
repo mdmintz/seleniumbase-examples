@@ -6,8 +6,7 @@
 
 ```python
 pip install seleniumbase --upgrade
-seleniumbase install chromedriver
-pytest --dashboard
+pytest --dashboard --html=report.html
 ```
 
 #### Example of [examples/kanban_test.py](https://github.com/mdmintz/seleniumbase-examples/blob/master/examples/kanban_test.py):
