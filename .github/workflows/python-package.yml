@@ -71,9 +71,10 @@ jobs:
     - name: Run pytest boilerplate_test.py --browser=edge --headless
       run: |
         pytest examples/boilerplates/boilerplate_test.py --browser=edge --headless -v -s --junit-xml=junit/test-results.xml
-    - name: Run pytest boilerplate_test.py --browser=firefox --xvfb --reruns=1 --reruns-delay=8
+    - name: Run pytest boilerplate_test.py --browser=firefox --xvfb --reruns=1
+      if: matrix.os == 'ubuntu-20.04'
       run: |
-        pytest examples/boilerplates/boilerplate_test.py --browser=firefox --xvfb --reruns=1 --reruns-delay=8 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/boilerplates/boilerplate_test.py --browser=firefox --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml
     - name: Run pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
