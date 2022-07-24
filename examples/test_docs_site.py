@@ -5,6 +5,10 @@ class DocsSiteTests(BaseCase):
     def test_docs(self):
         self.open("https://seleniumbase.io/")
         self.delete_all_cookies()
+        self.demo_mode = True
+        self.highlights = 1
+        self.demo_sleep = 0.1
+        self.message_duration = 0.5
         self.assert_text("SeleniumBase", "h1")
         self.js_click('a[href="help_docs/features_list/"]')
         self.assert_exact_text("Features List", "h1")
