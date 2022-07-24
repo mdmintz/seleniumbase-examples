@@ -53,10 +53,13 @@ jobs:
       run: |
         seleniumbase
         sbase
-    - name: Install chromedriver, edgedriver, and geckodriver
+    - name: Install chromedriver and edgedriver
       run: |
         seleniumbase install chromedriver
         seleniumbase install edgedriver
+    - name: Install geckodriver
+      if: matrix.os == 'ubuntu-20.04'
+      run: |
         seleniumbase install geckodriver
     - name: Make sure pytest is working
       run: |
