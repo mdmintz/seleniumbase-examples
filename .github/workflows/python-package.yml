@@ -93,9 +93,9 @@ jobs:
     - name: Run pytest examples/test_demo_site.py --xvfb -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_demo_site.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_docs_site.py --xvfb -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_docs_site.py --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_docs_site.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_docs_site.py --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest -m ready --browser=chrome --rs --headless -v -s --dashboard
       run: |
         pytest -m ready --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
