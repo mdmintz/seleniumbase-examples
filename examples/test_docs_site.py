@@ -4,7 +4,6 @@ from seleniumbase import BaseCase
 class DocsSiteTests(BaseCase):
     def test_docs(self):
         self.open("https://seleniumbase.io/")
-        self.delete_all_cookies()
         self.demo_mode = True
         self.highlights = 1
         self.demo_sleep = 0.1
