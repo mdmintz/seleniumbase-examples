@@ -41,16 +41,20 @@ jobs:
         pip install flake8
         # Stop the build if there are flake8 issues
         flake8 . --count --show-source --statistics --exclude=temp
-    - name: Install Chrome
-      run: |
-        sudo apt install google-chrome-stable
-    - name: Install Edge and Firefox
+    - name: Install Chrome, Edge, and Firefox
       if: matrix.os == 'ubuntu-20.04'
       run: |
+        sudo apt install google-chrome-stable
         sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
         sudo apt update
         sudo apt install microsoft-edge-stable
         sudo apt-get install firefox
+      if: matrix.os == 'macos-latest'
+      run: |
+        run: chromium --version
+      if: matrix.os == 'windows-latest'
+      run: |
+        run: (Get-Item (Get-Command chrome).Source).VersionInfo.ProductVersion
     - name: Check the console scripts interface
       run: |
         seleniumbase
