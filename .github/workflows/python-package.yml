@@ -52,11 +52,11 @@ jobs:
     - name: Check Chrome on macOS
       if: matrix.os == 'macos-latest'
       run: |
-        chromium --version
+        chrome --version
     - name: Check Chrome on Windows
       if: matrix.os == 'windows-latest'
       run: |
-        (Get-Item (Get-Command chrome).Source).VersionInfo.ProductVersion
+        chrome --version
     - name: Check the console scripts interface
       run: |
         seleniumbase
