@@ -49,14 +49,6 @@ jobs:
         sudo apt update
         sudo apt install microsoft-edge-stable
         sudo apt-get install firefox
-    - name: Check Chrome on macOS
-      if: matrix.os == 'macos-latest'
-      run: |
-        chrome --version
-    - name: Check Chrome on Windows
-      if: matrix.os == 'windows-latest'
-      run: |
-        chrome --version
     - name: Check the console scripts interface
       run: |
         seleniumbase
@@ -73,19 +65,19 @@ jobs:
       run: |
         echo "def test_1(): pass" > nothing.py
         pytest nothing.py
+    - name: Run pytest boilerplate_test.py --firefox --xvfb --reruns=1
+      if: matrix.os == 'ubuntu-20.04'
+      run: |
+        pytest examples/boilerplates/boilerplate_test.py --firefox --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest boilerplate_test.py --edge --headless --reruns=1
+      run: |
+        pytest examples/boilerplates/boilerplate_test.py --edge --headless --reruns=1 -v -s --junit-xml=junit/test-results.xml
     - name: Upgrade chromedriver to match the Chrome version
       run: |
         pytest examples/upgrade_chromedriver.py
     - name: Run pytest boilerplate_test.py --chrome --headless --reruns=1 --reruns-delay=5
       run: |
         pytest examples/boilerplates/boilerplate_test.py --chrome --headless --reruns=1 --reruns-delay=5 -v -s --junit-xml=junit/test-results.xml
-    - name: Run pytest boilerplate_test.py --edge --headless --reruns=1
-      run: |
-        pytest examples/boilerplates/boilerplate_test.py --edge --headless --reruns=1 -v -s --junit-xml=junit/test-results.xml
-    - name: Run pytest boilerplate_test.py --firefox --xvfb --reruns=1
-      if: matrix.os == 'ubuntu-20.04'
-      run: |
-        pytest examples/boilerplates/boilerplate_test.py --firefox --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml
     - name: Run pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
