@@ -49,9 +49,11 @@ jobs:
         sudo apt update
         sudo apt install microsoft-edge-stable
         sudo apt-get install firefox
+    - name: Check Chrome on macOS
       if: matrix.os == 'macos-latest'
       run: |
         run: chromium --version
+    - name: Check Chrome on Windows
       if: matrix.os == 'windows-latest'
       run: |
         run: (Get-Item (Get-Command chrome).Source).VersionInfo.ProductVersion
