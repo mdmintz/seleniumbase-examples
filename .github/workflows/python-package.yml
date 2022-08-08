@@ -75,9 +75,9 @@ jobs:
     - name: Upgrade chromedriver to match the Chrome version
       run: |
         pytest examples/upgrade_chromedriver.py
-    - name: Run pytest boilerplate_test.py --chrome --headless --reruns=1 --reruns-delay=5
+    - name: Run pytest boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10
       run: |
-        pytest examples/boilerplates/boilerplate_test.py --chrome --headless --reruns=1 --reruns-delay=5 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/boilerplates/boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml
     - name: Run pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
