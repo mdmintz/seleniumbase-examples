@@ -55,7 +55,7 @@ jobs:
         sbase
     - name: Install chromedriver and edgedriver
       run: |
-        seleniumbase install chromedriver latest
+        seleniumbase install chromedriver
         seleniumbase install edgedriver
     - name: Install geckodriver
       if: matrix.os == 'ubuntu-20.04'
