@@ -91,6 +91,7 @@ jobs:
       run: |
         pytest examples/test_demo_site.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_docs_site.py --xvfb --reruns=2 -v -s --junit-xml=junit/test-results.xml
+      if: matrix.os != 'windows-latest'
       run: |
         pytest examples/test_docs_site.py --xvfb --reruns=2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest -m ready --browser=chrome --rs --headless -v -s --dashboard
