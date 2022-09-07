@@ -6,7 +6,7 @@ class DocsSiteTests(BaseCase):
         self.demo_mode = True
         self.highlights = 2
         self.demo_sleep = 0.1
-        self.message_duration = 0.3
+        self.message_duration = 0.25
         self.open("https://seleniumbase.io/examples/ReadMe/")
         self.assert_exact_text("Running Example Tests", "h1")
         self.click('a[href="../../help_docs/customizing_test_runs/"]')
