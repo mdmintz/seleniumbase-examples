@@ -4,20 +4,20 @@ from seleniumbase import BaseCase
 class DocsSiteTests(BaseCase):
     def test_docs(self):
         self.demo_mode = True
-        self.highlights = 1
+        self.highlights = 2
         self.demo_sleep = 0.1
         self.message_duration = 0.3
         self.open("https://seleniumbase.io/examples/ReadMe/")
         self.assert_exact_text("Running Example Tests", "h1")
-        self.js_click('a[href="../../help_docs/customizing_test_runs/"]')
+        self.click('a[href="../../help_docs/customizing_test_runs/"]')
         self.assert_exact_text("Command Line Options", "h1")
-        self.js_click('a[href="../../examples/example_logs/ReadMe/"]')
+        self.click('a[href="../../examples/example_logs/ReadMe/"]')
         self.assert_exact_text("Dashboard / Reports", "h1")
-        self.js_click('a[href="../../../help_docs/syntax_formats/"]')
+        self.click('a[href="../../../help_docs/syntax_formats/"]')
         self.assert_exact_text("Syntax Formats", "h1")
-        self.js_click('a[href="../recorder_mode/"]')
+        self.click('a[href="../recorder_mode/"]')
         self.assert_exact_text("Recorder Mode", "h1")
-        self.js_click('a[href="../method_summary/"]')
+        self.click('a[href="../method_summary/"]')
         self.assert_exact_text("API Reference", "h1")
-        self.js_click('img[alt="logo"]')
+        self.click('img[alt="logo"]')
         self.assert_text("SeleniumBase", "h1")
