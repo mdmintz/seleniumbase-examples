@@ -97,6 +97,6 @@ jobs:
     - name: Run pytest -m ready --browser=chrome --rs --headless -v -s --dashboard
       run: |
         pytest -m ready --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
-    - name: Run pytest examples/wordle_test.py --xvfb -v -s --reruns=5
+    - name: Run pytest examples/wordle_test.py --xvfb -v -s --reruns=7
       run: |
-        pytest examples/wordle_test.py --xvfb -v -s --reruns=5
+        pytest examples/wordle_test.py --xvfb -v -s --reruns=7
