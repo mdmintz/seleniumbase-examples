@@ -1,7 +1,7 @@
 """Context Manager Tests"""
 from seleniumbase import SB
 
-with SB() as sb:  # By default, browser="chrome" if not set.
+with SB(test=True, rtf=True) as sb:
     sb.open("https://seleniumbase.github.io/realworld/login")
     sb.type("#username", "demo_user")
     sb.type("#password", "secret_pass")
