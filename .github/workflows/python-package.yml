@@ -13,7 +13,7 @@ jobs:
   build:
 
     env:
-      PY_COLORS: "1"
+      PY_COLORS: "0"
     strategy:
       fail-fast: false
       max-parallel: 12
@@ -24,10 +24,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
