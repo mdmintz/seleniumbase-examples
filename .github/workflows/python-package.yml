@@ -75,31 +75,31 @@ jobs:
     - name: Run pytest boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10
       run: |
         pytest examples/boilerplates/boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml
-    - name: Run pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_calculator.py --headless2 --rs -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_calculator.py --xvfb --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_canvas.py --xvfb -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_calculator.py --headless2 --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_canvas.py --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_canvas.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_canvas.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_tinymce.py --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_tinymce.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run python examples/raw_sb.py --headless2
       run: |
         python examples/raw_sb.py --headless2
-    - name: Run pytest examples/test_mfa_login.py --xvfb -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_mfa_login.py --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_mfa_login.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_drag_and_drop.py --xvfb -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_mfa_login.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_drag_and_drop.py --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_drag_and_drop.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_demo_site.py --xvfb -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_drag_and_drop.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_demo_site.py --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_demo_site.py --xvfb -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_docs_site.py --xvfb --reruns=2 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_demo_site.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_docs_site.py --headless2 --reruns=2 -v -s --junit-xml=junit/test-results.xml
       if: matrix.os != 'windows-latest'
       run: |
-        pytest examples/test_docs_site.py --xvfb --reruns=2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_docs_site.py --headless2 --reruns=2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest -m ready --browser=chrome --rs --headless -v -s --dashboard
       run: |
         pytest -m ready --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
