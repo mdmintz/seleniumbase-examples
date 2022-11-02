@@ -97,7 +97,7 @@ jobs:
       run: |
         pytest examples/test_demo_site.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_docs_site.py --headless2 --reruns=2 -v -s --junit-xml=junit/test-results.xml
-      if: matrix.os != 'windows-latest'
+      if: matrix.os == 'ubuntu-20.04'
       run: |
         pytest examples/test_docs_site.py --headless2 --reruns=2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest -m ready --browser=chrome --rs --headless -v -s --dashboard
