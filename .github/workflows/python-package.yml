@@ -78,9 +78,9 @@ jobs:
     - name: Run pytest examples/test_calculator.py --headless2 --uc --rs -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_calculator.py --headless2 --uc --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_canvas.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_canvas.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_tinymce.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_tinymce.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
