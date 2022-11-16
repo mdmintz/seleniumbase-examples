@@ -47,7 +47,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt install google-chrome-stable
-        sudo apt install firefox --fix-missing
+        sudo apt install firefox
         sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
         sudo apt update
         sudo apt install microsoft-edge-stable
