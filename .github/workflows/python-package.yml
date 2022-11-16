@@ -45,11 +45,11 @@ jobs:
     - name: Install Chrome, Edge, and Firefox
       if: matrix.os == 'ubuntu-20.04'
       run: |
-        sudo apt install google-chrome-stable
         sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
         sudo apt update
-        sudo apt install microsoft-edge-stable
-        sudo apt install firefox
+        sudo apt install google-chrome-stable --fix-missing
+        sudo apt install microsoft-edge-stable --fix-missing
+        sudo apt install firefox --fix-missing
     - name: Check the console scripts interface
       run: |
         seleniumbase
