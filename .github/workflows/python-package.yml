@@ -104,12 +104,15 @@ jobs:
     - name: Run pytest -m ready --browser=chrome --uc --rs --headless -v -s --dashboard
       run: |
         pytest -m ready --browser=chrome --uc --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
-    - name: Run pytest examples/wordle_test.py --uc -v -s --reruns=11 --headless2
-      run: |
-        pytest examples/wordle_test.py --uc -v -s --reruns=11 --headless2
     - name: Verify sbvirtualdisplay install from PyPI
       run: |
         pip install sbvirtualdisplay -U --no-deps --force-reinstall --no-cache-dir
+    - name: Verify tabcompleter install from PyPI
+      run: |
+        pip install tabcompleter -U --no-deps --force-reinstall --no-cache-dir
+    - name: Verify pdbp install from PyPI
+      run: |
+        pip install pdbp -U --no-deps --force-reinstall --no-cache-dir
     - name: Verify seleniumbase install from PyPI
       run: |
         pip install seleniumbase -U --no-deps --force-reinstall --no-cache-dir
