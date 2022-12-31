@@ -3,7 +3,7 @@ from seleniumbase import BaseCase
 
 
 @pytest.mark.ready
-class MyTestClass(BaseCase):
+class TinyMceTests(BaseCase):
 
     def test_tinymce(self):
         self.open("https://seleniumbase.io/tinymce/")
@@ -14,15 +14,14 @@ class MyTestClass(BaseCase):
         self.click('span:contains("Heading 2")')
         self.switch_to_frame("iframe")
         self.add_text("#tinymce", "Automate anything with SeleniumBase!\n")
-        self.switch_to_default_content()
-        self.click('button i.mce-i-image')
+        self.switch_to_parent_frame()
+        self.click("button i.mce-i-image")
         self.type('input[aria-label="Width"].mce-textbox', "300")
-        image_url = "https://seleniumbase.io/img/sb_logo_10.png"
+        image_url = "https://seleniumbase.github.io/img/sb_logo_10.png"
         self.type("input.mce-textbox", image_url + "\n")
-        self.switch_to_frame("iframe")
-        self.click("h2")
-        self.switch_to_default_content()
-        self.post_message("Automate anything with SeleniumBase!")
+        with self.frame_switch("iframe"):
+            self.click("h2")
+            self.post_message("Automate anything with SeleniumBase!")
         self.click('span:contains("File")')
         self.click('span:contains("Preview")')
         self.switch_to_frame('iframe[sandbox="allow-scripts"]')
