@@ -42,11 +42,10 @@ jobs:
         pip install flake8
         # Stop the build if there are flake8 issues
         flake8 . --count --show-source --statistics --exclude=temp
-    - name: Install Chrome, Edge, and Firefox
+    - name: Install Chrome and Edge
       if: matrix.os == 'ubuntu-20.04'
       run: |
         sudo apt install google-chrome-stable
-        sudo apt-get install firefox
         sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
         sudo apt update
         sudo apt install microsoft-edge-stable
@@ -58,18 +57,14 @@ jobs:
       run: |
         seleniumbase install chromedriver
         seleniumbase install edgedriver
-    - name: Install geckodriver
-      if: matrix.os == 'ubuntu-20.04'
-      run: |
-        seleniumbase install geckodriver
     - name: Make sure pytest is working
       run: |
         echo "def test_1(): pass" > nothing.py
         pytest nothing.py
-    - name: Run pytest boilerplate_test.py --firefox --xvfb --reruns=1
+    - name: Run pytest boilerplate_test.py --chrome --xvfb --reruns=1
       if: matrix.os == 'ubuntu-20.04'
       run: |
-        pytest examples/boilerplates/boilerplate_test.py --firefox --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/boilerplates/boilerplate_test.py --chrome --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml
     - name: Run pytest boilerplate_test.py --edge --headless --reruns=1
       run: |
         pytest examples/boilerplates/boilerplate_test.py --edge --headless --reruns=1 -v -s --junit-xml=junit/test-results.xml
