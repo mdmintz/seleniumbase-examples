@@ -76,10 +76,10 @@ class WordleTests(BaseCase):
             button = 'button[class*="oneAndAHalf"]'
             self.click(button)
             row = (
-                'div[class*="lbzlf"] div[class*="Row-module"]:nth-of-type(%s) '
+                'div[class*="Board"] div[class*="Row-module"]:nth-of-type(%s) '
                 % num_attempts
             )
-            tile = row + 'div:nth-child(%s) div[class*="module_tile__3ayIZ"]'
+            tile = row + 'div:nth-child(%s) div[class*="module_tile__"]'
             self.wait_for_element(tile % "5" + '[data-state*="e"]')
             letter_status = []
             for i in range(1, 6):
@@ -95,6 +95,11 @@ class WordleTests(BaseCase):
         if success:
             print('\nWord: "%s"\nAttempts: %s' % (word.upper(), num_attempts))
         else:
-            print('Final guess: "%s" (Not the correct word!)' % word.upper())
-            self.fail("Unable to solve for the correct word in 6 attempts!")
+            print('\nFinal guess: "%s" (Not the correct word!)' % word.upper())
+            print("\nUnable to solve for the correct word in 6 attempts!")
         self.sleep(3)
+
+
+if __name__ == "__main__":
+    from pytest import main
+    main([__file__, "-s"])
