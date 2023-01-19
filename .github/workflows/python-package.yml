@@ -96,9 +96,9 @@ jobs:
       if: matrix.os == 'ubuntu-20.04'
       run: |
         pytest examples/test_docs_site.py --headless2 --uc --reruns=2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest -m ready --browser=chrome --uc --rs --headless -v -s --dashboard
+    - name: Run pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --dashboard
       run: |
-        pytest -m ready --browser=chrome --uc --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
+        pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
     - name: Verify sbvirtualdisplay install from PyPI
       run: |
         pip install sbvirtualdisplay -U --no-deps --force-reinstall --no-cache-dir
