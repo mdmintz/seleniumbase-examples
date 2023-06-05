@@ -63,7 +63,7 @@ jobs:
         pytest nothing.py
     - name: Get CPU count
       run: |
-        echo "print(import os; os.cpu_count())" > get_cpu_count.py
+        echo "import os; print(os.cpu_count())" > get_cpu_count.py
         python get_cpu_count.py
     - name: Run pytest boilerplate_test.py --chrome --xvfb --reruns=1
       if: matrix.os == 'ubuntu-20.04'
