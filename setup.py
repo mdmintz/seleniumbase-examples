@@ -39,6 +39,8 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Topic :: Internet",
         "Topic :: Software Development",
         "Topic :: Software Development :: Quality Assurance",
@@ -50,9 +52,9 @@ setup(
     ],
     python_requires='>=3.6',
     install_requires=[
-        'seleniumbase>=4.15.3',
-        'pdbp>=1.4.0',
-        'tabcompleter>=1.2.0',
+        'seleniumbase>=4.15.6',
+        'pdbp>=1.4.2',
+        'tabcompleter>=1.2.1',
         'sbvirtualdisplay>=1.2.0',
         ],
     packages=[
