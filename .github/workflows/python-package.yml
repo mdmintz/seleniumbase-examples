@@ -27,10 +27,9 @@ jobs:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
       uses: mirromutth/mysql-action@v1.1
       with:
+        python-version: ${{ matrix.python-version }}
         host port: 3306
         mysql version: '8.0'
         mysql database: 'test_db'
