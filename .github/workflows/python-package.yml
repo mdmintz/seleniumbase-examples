@@ -41,13 +41,12 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Prepare MySQL DB
       run: |
-        sudo apt-get install mysql-server
-        sudo service mysqld start
+        sudo service mysql start
         sudo mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
         wget https://raw.githubusercontent.com/seleniumbase/SeleniumBase/master/seleniumbase/core/create_db_tables.sql
         sudo mysql -h 127.0.0.1 -u root test_db < create_db_tables.sql
         mysqladmin -u root password test
-        sudo service mysqld restart
+        sudo service mysql restart
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
