@@ -23,27 +23,30 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_DATABASE: test_db
-          MYSQL_ROOT_PASSWORD: test
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+    - uses: mirromutth/mysql-action@v1.1
+        with:
+          host port: 3306
+          mysql version: '8.0'
+          mysql database: 'test_db'
+          mysql root password: 'test'
+          mysql user: 'root'
+          mysql password:
+      - run: mysql --version
+      - run: ls
+      - run: sudo apt-get install libmysqlclient-dev
+      - run: sudo apt-get install zlib1g-dev
+      - run: pip3 install mysqlclient
+      - run: pip3 install SQLAlchemy
+      - run: sudo systemctl start mysql.service
+      # - run: cat setup_mysql_test.sql | sudo mysql -u root --password=password
     - name: Prepare MySQL DB
       run: |
-        systemctl status mysql.service
-        journalctl -xe
-        sudo service mysql start
         sudo mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
         wget https://raw.githubusercontent.com/seleniumbase/SeleniumBase/master/seleniumbase/core/create_db_tables.sql
         sudo mysql -h 127.0.0.1 -u root test_db < create_db_tables.sql
