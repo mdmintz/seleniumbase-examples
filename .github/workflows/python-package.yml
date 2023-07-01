@@ -29,7 +29,7 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-    - uses: mirromutth/mysql-action@v1.1
+      uses: mirromutth/mysql-action@v1.1
       with:
         host port: 3306
         mysql version: '8.0'
