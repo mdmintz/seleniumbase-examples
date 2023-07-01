@@ -30,13 +30,13 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - uses: mirromutth/mysql-action@v1.1
-        with:
-          host port: 3306
-          mysql version: '8.0'
-          mysql database: 'test_db'
-          mysql root password: 'test'
-          mysql user: 'root'
-          mysql password:
+      with:
+        host port: 3306
+        mysql version: '8.0'
+        mysql database: 'test_db'
+        mysql root password: 'test'
+        mysql user: 'root'
+        mysql password: 'test'
       - run: mysql --version
       - run: ls
       - run: sudo apt-get install libmysqlclient-dev
