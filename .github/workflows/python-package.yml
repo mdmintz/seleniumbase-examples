@@ -41,6 +41,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Prepare MySQL DB
       run: |
+        systemctl status mysql.service
+        journalctl -xe
         sudo service mysql start
         sudo mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
         wget https://raw.githubusercontent.com/seleniumbase/SeleniumBase/master/seleniumbase/core/create_db_tables.sql
