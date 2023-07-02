@@ -32,8 +32,8 @@ jobs:
     - name: Configure MySQL DB
       run: |
         sudo /etc/init.d/mysql start
-        mysql -e "UPDATE user SET Password=PASSWORD('test') WHERE User='root'; FLUSH PRIVILEGES; exit;" -uroot -proot
-        mysql -e "CREATE DATABASE IF NOT EXISTS test_db;" -uroot -ptest
+        mysql -e 'UPDATE user SET Password=PASSWORD("test") WHERE user="root"; FLUSH PRIVILEGES; exit;' -uroot -proot
+        mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;' -uroot -ptest
         wget https://raw.githubusercontent.com/seleniumbase/SeleniumBase/master/seleniumbase/core/create_db_tables.sql
         sudo mysql -h 127.0.0.1 -uroot -ptest test_db < create_db_tables.sql
         sudo service mysql restart
