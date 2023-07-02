@@ -22,15 +22,6 @@ jobs:
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
 
     runs-on: ${{ matrix.os }}
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: test
-          MYSQL_DATABASE: test_db
-        ports:
-            - '3306:3306'
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - uses: actions/checkout@v3
@@ -41,10 +32,9 @@ jobs:
     - name: Configure MySQL DB
       run: |
         sudo /etc/init.d/mysql start
-        mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;' -uroot -ptest
+        mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;' -uroot -proot
         wget https://raw.githubusercontent.com/seleniumbase/SeleniumBase/master/seleniumbase/core/create_db_tables.sql
         sudo mysql -h 127.0.0.1 -u root test_db < create_db_tables.sql
-        mysqladmin -u root -p root password test
         sudo service mysql restart
     - name: Install dependencies
       run: |
