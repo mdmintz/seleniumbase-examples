@@ -23,28 +23,29 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
+    steps:
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/checkout@v3
       uses: actions/setup-python@v4
-      uses: mirromutth/mysql-action@v1.1
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Set up MySQL
+      uses: mirromutth/mysql-action@v1.1
+      with:
         host port: 3306
         mysql version: '8.0'
         mysql database: 'test_db'
         mysql root password: 'test'
         mysql user: 'root'
         mysql password: 'test'
-      - run: mysql --version
-      - run: ls
-      - run: sudo apt-get install libmysqlclient-dev
-      - run: sudo apt-get install zlib1g-dev
-      - run: pip3 install mysqlclient
-      - run: pip3 install SQLAlchemy
-      - run: sudo systemctl start mysql.service
-      # - run: cat setup_mysql_test.sql | sudo mysql -u root --password=password
-    - name: Prepare MySQL DB
       run: |
+        mysql --version
+        ls
+        sudo apt-get install libmysqlclient-dev
+        sudo apt-get install zlib1g-dev
+        pip3 install mysqlclient
+        pip3 install SQLAlchemy
+        sudo systemctl start mysql.service
         sudo mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
         wget https://raw.githubusercontent.com/seleniumbase/SeleniumBase/master/seleniumbase/core/create_db_tables.sql
         sudo mysql -h 127.0.0.1 -u root test_db < create_db_tables.sql
