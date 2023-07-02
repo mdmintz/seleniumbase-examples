@@ -38,15 +38,6 @@ jobs:
         mysql root password: 'test'
         mysql user: 'root'
         mysql password: 'test'
-    - name: Get additional MySQL dependencies
-      run: |
-        mysql --version
-        ls
-        sudo apt-get install libmysqlclient-dev
-        sudo apt-get install zlib1g-dev
-        pip3 install mysqlclient
-        pip3 install SQLAlchemy
-        sudo systemctl start mysql.service
     - name: Configure MySQL DB
       run: |
         sudo mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;'
