@@ -1,4 +1,4 @@
-name: CI build
+name: CI Build 1 (Ubuntu with MySQL)
 on:
   schedule:
     - cron: "22 * * * *"
@@ -30,6 +30,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Configure MySQL DB
+      if: runner.os == 'Linux'
       run: |
         sudo /etc/init.d/mysql start
         mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;' -uroot -proot
@@ -52,7 +53,7 @@ jobs:
         # Stop the build if there are flake8 issues
         flake8 . --count --show-source --statistics --exclude=temp
     - name: Install Chrome and Edge
-      if: matrix.os == 'ubuntu-20.04'
+      if: runner.os == 'Linux'
       run: |
         sudo apt install google-chrome-stable
         sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
@@ -75,7 +76,7 @@ jobs:
         echo "import os; print(os.cpu_count())" > get_cpu_count.py
         python get_cpu_count.py
     - name: Run pytest boilerplate_test.py --chrome --xvfb --reruns=1
-      if: matrix.os == 'ubuntu-20.04'
+      if: runner.os == 'Linux'
       run: |
         pytest examples/boilerplates/boilerplate_test.py --chrome --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
     - name: Run pytest boilerplate_test.py --edge --headless --reruns=1
@@ -106,13 +107,14 @@ jobs:
       run: |
         pytest examples/test_demo_site.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_docs_site.py --headless2 --uc --reruns=2 -v -s --junit-xml=junit/test-results.xml
-      if: matrix.os == 'ubuntu-20.04'
+      if: runner.os == 'Linux'
       run: |
         pytest examples/test_docs_site.py --headless2 --uc --reruns=2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --dashboard
       run: |
         pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page --with-db_reporting
     - name: Query MySQL Results
+      if: runner.os == 'Linux'
       run: |
         mysql -e 'select test_address,browser,state,start_time,runtime from test_db.test_run_data;' -uroot -ptest
     - name: Verify sbvirtualdisplay install from PyPI
