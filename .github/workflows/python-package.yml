@@ -34,7 +34,7 @@ jobs:
         sudo /etc/init.d/mysql start
         mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;' -uroot -proot
         wget https://raw.githubusercontent.com/seleniumbase/SeleniumBase/master/seleniumbase/core/create_db_tables.sql
-        sudo mysql -h 127.0.0.1 -u root test_db < create_db_tables.sql
+        sudo mysql -h 127.0.0.1 -uroot -proot test_db < create_db_tables.sql
         sudo service mysql restart
     - name: Install dependencies
       run: |
