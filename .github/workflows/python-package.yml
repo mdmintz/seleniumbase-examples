@@ -1,7 +1,7 @@
-name: CI build
+name: CI Build 1 (Ubuntu with MySQL)
 on:
   schedule:
-    - cron: "30 * * * *"
+    - cron: "22 * * * *"
   push:
     branches: [ master ]
   pull_request:
@@ -16,18 +16,28 @@ jobs:
       PY_COLORS: "1"
     strategy:
       fail-fast: false
-      max-parallel: 15
+      max-parallel: 10
       matrix:
-        os: [ubuntu-20.04, macos-latest, windows-latest]
+        os: [ubuntu-20.04, ubuntu-22.04]
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
 
     runs-on: ${{ matrix.os }}
+
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Configure MySQL DB
+      if: runner.os == 'Linux'
+      run: |
+        sudo /etc/init.d/mysql start
+        mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;' -uroot -proot
+        wget https://raw.githubusercontent.com/seleniumbase/SeleniumBase/master/seleniumbase/core/create_db_tables.sql
+        sudo mysql -h 127.0.0.1 -uroot -proot test_db < create_db_tables.sql
+        sudo mysql -e 'ALTER USER "root"@"localhost" IDENTIFIED BY "test";' -uroot -proot
+        sudo service mysql restart
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -43,7 +53,7 @@ jobs:
         # Stop the build if there are flake8 issues
         flake8 . --count --show-source --statistics --exclude=temp
     - name: Install Chrome and Edge
-      if: matrix.os == 'ubuntu-20.04'
+      if: runner.os == 'Linux'
       run: |
         sudo apt install google-chrome-stable
         sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
@@ -66,43 +76,47 @@ jobs:
         echo "import os; print(os.cpu_count())" > get_cpu_count.py
         python get_cpu_count.py
     - name: Run pytest boilerplate_test.py --chrome --xvfb --reruns=1
-      if: matrix.os == 'ubuntu-20.04'
+      if: runner.os == 'Linux'
       run: |
-        pytest examples/boilerplates/boilerplate_test.py --chrome --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/boilerplates/boilerplate_test.py --chrome --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
     - name: Run pytest boilerplate_test.py --edge --headless --reruns=1
       run: |
-        pytest examples/boilerplates/boilerplate_test.py --edge --headless --reruns=1 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/boilerplates/boilerplate_test.py --edge --headless --reruns=1 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
     - name: Run pytest boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10
       run: |
-        pytest examples/boilerplates/boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/boilerplates/boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
     - name: Run pytest examples/test_calculator.py --headless2 --uc --rs -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_calculator.py --headless2 --uc --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_calculator.py --headless2 --uc --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run pytest examples/test_tinymce.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_tinymce.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_tinymce.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run python examples/raw_sb.py --headless2 --uc
       run: |
         python examples/raw_sb.py --headless2 --uc
     - name: Run pytest examples/test_mfa_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_mfa_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_mfa_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run pytest examples/test_drag_and_drop.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_drag_and_drop.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_drag_and_drop.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run pytest examples/test_demo_site.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_demo_site.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_docs_site.py --headless2 --uc --reruns=2 -v -s --junit-xml=junit/test-results.xml
-      if: matrix.os == 'ubuntu-20.04'
+      if: runner.os == 'Linux'
       run: |
-        pytest examples/test_docs_site.py --headless2 --uc --reruns=2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_docs_site.py --headless2 --uc --reruns=2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --dashboard
       run: |
-        pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
+        pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page --with-db_reporting
+    - name: Query MySQL Results
+      if: runner.os == 'Linux'
+      run: |
+        mysql -e 'select test_address,browser,state,start_time,runtime from test_db.test_run_data;' -uroot -ptest
     - name: Verify sbvirtualdisplay install from PyPI
       run: |
         pip install sbvirtualdisplay -U --no-deps --force-reinstall --no-cache-dir
