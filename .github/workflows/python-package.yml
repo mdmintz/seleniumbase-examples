@@ -1,7 +1,7 @@
 name: CI build
 on:
   schedule:
-    - cron: "30 * * * *"
+    - cron: "22 * * * *"
   push:
     branches: [ master ]
   pull_request:
@@ -16,9 +16,9 @@ jobs:
       PY_COLORS: "1"
     strategy:
       fail-fast: false
-      max-parallel: 15
+      max-parallel: 10
       matrix:
-        os: [ubuntu-20.04, macos-latest, windows-latest]
+        os: [ubuntu-20.04, ubuntu-22.04]
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
 
     runs-on: ${{ matrix.os }}
