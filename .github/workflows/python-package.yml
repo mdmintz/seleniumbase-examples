@@ -56,10 +56,7 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt install google-chrome-stable
-        sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
         sudo apt install microsoft-edge-stable
-        sudo apt update
-        sudo apt-get update
     - name: Check the console scripts interface
       run: |
         seleniumbase
