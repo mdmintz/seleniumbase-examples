@@ -52,8 +52,8 @@ setup(
     ],
     python_requires='>=3.6',
     install_requires=[
-        'seleniumbase>=4.15.13',
-        'pdbp>=1.4.2',
+        'seleniumbase>=4.17.9',
+        'pdbp>=1.4.6',
         'tabcompleter>=1.2.1',
         'sbvirtualdisplay>=1.2.0',
         ],
