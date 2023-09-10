@@ -77,9 +77,9 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         pytest examples/boilerplates/boilerplate_test.py --chrome --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
-    - name: Run pytest boilerplate_test.py --edge --headless2 --reruns=1 --chromium-arg="set-binary"
+    - name: Run pytest boilerplate_test.py --edge --headless2 --reruns=1
       run: |
-        pytest examples/boilerplates/boilerplate_test.py --edge --headless2 --reruns=1 -v -s --junit-xml=junit/test-results.xml --with-db_reporting --chromium-arg="set-binary"
+        pytest examples/boilerplates/boilerplate_test.py --edge --headless2 --reruns=1 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
     - name: Run pytest boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10
       run: |
         pytest examples/boilerplates/boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
