@@ -34,7 +34,6 @@ setup(
         "Intended Audience :: Developers",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -50,11 +49,11 @@ setup(
         "Topic :: Software Development :: Testing :: Traffic Generation",
         "Topic :: Utilities",
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.7',
     install_requires=[
-        'seleniumbase>=4.17.14',
-        'pdbp>=1.4.6',
-        'tabcompleter>=1.2.1',
+        'seleniumbase>=4.19.2',
+        'pdbp>=1.5.0',
+        'tabcompleter>=1.3.0',
         'sbvirtualdisplay>=1.2.0',
         ],
     packages=[
