@@ -73,6 +73,9 @@ jobs:
     - name: Run pytest examples/test_tinymce.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_tinymce.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_simple_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+      run: |
+        pytest examples/test_simple_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run python examples/raw_sb.py --headless2 --uc
       run: |
         python examples/raw_sb.py --headless2 --uc
