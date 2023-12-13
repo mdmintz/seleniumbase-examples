@@ -16,10 +16,10 @@ jobs:
       PY_COLORS: "1"
     strategy:
       fail-fast: false
-      max-parallel: 10
+      max-parallel: 12
       matrix:
         os: [macos-latest, windows-latest]
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -61,9 +61,9 @@ jobs:
     - name: Run pytest boilerplate_test.py --edge --headless --reruns=1
       run: |
         pytest examples/boilerplates/boilerplate_test.py --edge --headless --reruns=1 -v -s --junit-xml=junit/test-results.xml
-    - name: Run pytest boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10
+    - name: Run pytest boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10
       run: |
-        pytest examples/boilerplates/boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/boilerplates/boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml
     - name: Run pytest examples/test_calculator.py --headless2 --uc --rs -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_calculator.py --headless2 --uc --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
