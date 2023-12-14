@@ -64,33 +64,33 @@ jobs:
     - name: Run pytest boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10
       run: |
         pytest examples/boilerplates/boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml
-    - name: Run pytest examples/test_calculator.py --headless2 --uc --rs -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_calculator.py --headless2 --rs -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_calculator.py --headless2 --uc --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_calculator.py --headless2 --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_tinymce.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_tinymce.py --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_tinymce.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_simple_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_tinymce.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_simple_login.py --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_simple_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run python examples/raw_sb.py --headless2 --uc
+        pytest examples/test_simple_login.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run python examples/raw_sb.py --headless2
       run: |
-        python examples/raw_sb.py --headless2 --uc
-    - name: Run pytest examples/test_mfa_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+        python examples/raw_sb.py --headless2
+    - name: Run pytest examples/test_mfa_login.py --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_mfa_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_drag_and_drop.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_mfa_login.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_drag_and_drop.py --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_drag_and_drop.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_demo_site.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_drag_and_drop.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_demo_site.py --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_demo_site.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --dashboard
+        pytest examples/test_demo_site.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --dashboard
       run: |
-        pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
+        pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
     - name: Verify sbvirtualdisplay install from PyPI
       run: |
         pip install sbvirtualdisplay -U --no-deps --force-reinstall --no-cache-dir
