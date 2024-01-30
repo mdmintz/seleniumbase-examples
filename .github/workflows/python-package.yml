@@ -90,28 +90,28 @@ jobs:
     - name: Run pytest examples/test_ua_with_uc.py --reruns=2 --uc --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_ua_with_uc.py --reruns=2 --uc --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run pytest examples/test_tinymce.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_tinymce.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_tinymce.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run pytest examples/test_simple_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_tinymce.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+    - name: Run pytest examples/test_simple_login.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_simple_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+        pytest examples/test_simple_login.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run python examples/raw_sb.py --headless2 --uc
       run: |
         python examples/raw_sb.py --headless2 --uc
-    - name: Run pytest examples/test_mfa_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_mfa_login.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_mfa_login.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run pytest examples/test_drag_and_drop.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_mfa_login.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+    - name: Run pytest examples/test_drag_and_drop.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_drag_and_drop.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run pytest examples/test_demo_site.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_drag_and_drop.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+    - name: Run pytest examples/test_demo_site.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_demo_site.py --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_docs_site.py --headless2 --uc --reruns=2 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_demo_site.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_docs_site.py --reruns=2 --headless2 --uc --reruns=2 -v -s --junit-xml=junit/test-results.xml
       if: runner.os == 'Linux'
       run: |
-        pytest examples/test_docs_site.py --headless2 --uc --reruns=2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+        pytest examples/test_docs_site.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --dashboard
       run: |
         pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page --with-db_reporting
@@ -125,6 +125,9 @@ jobs:
     - name: Verify tabcompleter install from PyPI
       run: |
         pip install tabcompleter -U --no-deps --force-reinstall --no-cache-dir
+    - name: Verify pynose install from PyPI
+      run: |
+        pip install pynose -U --no-deps --force-reinstall --no-cache-dir
     - name: Verify pdbp install from PyPI
       run: |
         pip install pdbp -U --no-deps --force-reinstall --no-cache-dir
