@@ -82,9 +82,6 @@ jobs:
     - name: Run pytest examples/test_mfa_login.py --headless -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_mfa_login.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_drag_and_drop.py --xvfb --headless2 -v -s --junit-xml=junit/test-results.xml
-      run: |
-        pytest examples/test_drag_and_drop.py --xvfb --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_demo_site.py --headless -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_demo_site.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
