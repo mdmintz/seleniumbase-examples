@@ -1,4 +1,4 @@
-name: CI Build 2 (macOS and Windows)
+name: CI Build 3 (Windows)
 on:
   schedule:
     - cron: "52 * * * *"
@@ -16,9 +16,9 @@ jobs:
       PY_COLORS: "1"
     strategy:
       fail-fast: false
-      max-parallel: 12
+      max-parallel: 6
       matrix:
-        os: [macos-latest, windows-latest]
+        os: [windows-latest]
         python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
 
     runs-on: ${{ matrix.os }}
@@ -64,30 +64,30 @@ jobs:
     - name: Run pytest boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10
       run: |
         pytest examples/boilerplates/boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml
-    - name: Run pytest examples/test_calculator.py --headless2 --rs -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_calculator.py --headless --rs -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_calculator.py --headless2 --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_calculator.py --headless --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_canvas.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_tinymce.py --headless2 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_canvas.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_tinymce.py --headless -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_tinymce.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_simple_login.py --headless2 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_tinymce.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_simple_login.py --headless -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_simple_login.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run python examples/raw_sb.py --headless2
+        pytest examples/test_simple_login.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run python examples/raw_sb.py --headless
       run: |
-        python examples/raw_sb.py --headless2
-    - name: Run pytest examples/test_mfa_login.py --headless2 -v -s --junit-xml=junit/test-results.xml
+        python examples/raw_sb.py --headless
+    - name: Run pytest examples/test_mfa_login.py --headless -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_mfa_login.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_drag_and_drop.py --headless2 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_mfa_login.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_drag_and_drop.py --headless -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_drag_and_drop.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_demo_site.py --headless2 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_drag_and_drop.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_demo_site.py --headless -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_demo_site.py --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_demo_site.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --dashboard
       run: |
         pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
