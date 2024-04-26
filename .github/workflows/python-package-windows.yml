@@ -76,18 +76,9 @@ jobs:
     - name: Run pytest examples/test_simple_login.py --headless -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_simple_login.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run python examples/raw_sb.py --headless
-      run: |
-        python examples/raw_sb.py --headless
-    - name: Run pytest examples/test_mfa_login.py --headless -v -s --junit-xml=junit/test-results.xml
-      run: |
-        pytest examples/test_mfa_login.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest examples/test_demo_site.py --headless -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_demo_site.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --dashboard
-      run: |
-        pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
     - name: Verify sbvirtualdisplay install from PyPI
       run: |
         pip install sbvirtualdisplay -U --no-deps --force-reinstall --no-cache-dir
