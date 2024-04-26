@@ -58,9 +58,6 @@ jobs:
       run: |
         echo "import os; print(os.cpu_count())" > get_cpu_count.py
         python get_cpu_count.py
-    - name: Run pytest boilerplate_test.py --edge --headless --reruns=1
-      run: |
-        pytest examples/boilerplates/boilerplate_test.py --edge --headless --reruns=1 -v -s --junit-xml=junit/test-results.xml
     - name: Run pytest boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10
       run: |
         pytest examples/boilerplates/boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml
