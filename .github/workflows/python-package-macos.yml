@@ -42,6 +42,10 @@ jobs:
         pip install flake8
         # Stop the build if there are flake8 issues
         flake8 . --count --show-source --statistics --exclude=temp
+    - name: Check the console scripts interface (methods)
+      run: |
+        seleniumbase methods
+        sbase methods
     - name: Check the console scripts interface
       run: |
         seleniumbase
