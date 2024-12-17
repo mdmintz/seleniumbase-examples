@@ -71,18 +71,18 @@ jobs:
     - name: Run pytest examples/test_canvas.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_canvas.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_tinymce.py --headless -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_tinymce.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_tinymce.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_simple_login.py --headless -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_tinymce.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_simple_login.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_simple_login.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_drag_and_drop.py --headless -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_simple_login.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_drag_and_drop.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_drag_and_drop.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_demo_site.py --headless -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_drag_and_drop.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_demo_site.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_demo_site.py --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
+        pytest examples/test_demo_site.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
     - name: Run pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --dashboard
       run: |
         pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
