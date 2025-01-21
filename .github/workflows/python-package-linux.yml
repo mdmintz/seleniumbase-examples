@@ -100,9 +100,9 @@ jobs:
     - name: Run pytest examples/test_simple_login.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_simple_login.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run pytest examples/test_swag_suite.py --headless --xvfb --rs -v -s --reruns=2 --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_swag_suite.py --gui --xvfb --rs -v -s --reruns=2 --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_swag_suite.py --headless --xvfb --rs -v -s --reruns=2 --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+        pytest examples/test_swag_suite.py --gui --xvfb --rs -v -s --reruns=2 --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run python examples/raw_sb.py --headless2 --uc
       run: |
         python examples/raw_sb.py --headless2 --uc
