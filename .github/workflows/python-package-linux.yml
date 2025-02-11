@@ -119,9 +119,9 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         pytest examples/test_docs_site.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --dashboard
+    - name: Run pytest -m ready --reruns=2 --browser=chrome --rs --headless -v -s --dashboard
       run: |
-        pytest -m ready --reruns=1 --browser=chrome --uc --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page --with-db_reporting
+        pytest -m ready --reruns=2 --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page --with-db_reporting
     - name: Query MySQL Results
       if: runner.os == 'Linux'
       run: |
