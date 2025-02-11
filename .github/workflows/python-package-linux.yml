@@ -82,9 +82,9 @@ jobs:
     - name: Run pytest boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10
       run: |
         pytest examples/boilerplates/boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
-    - name: Run pytest examples/test_calculator.py --headless2 --uc --rs -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_calculator.py --headless --rs -v -s --junit-xml=junit/test-results.xml --reruns=2
       run: |
-        pytest examples/test_calculator.py --headless2 --uc --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+        pytest examples/test_calculator.py --headless --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting --reruns=2
     - name: Run pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
