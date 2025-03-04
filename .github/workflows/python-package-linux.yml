@@ -16,10 +16,10 @@ jobs:
       PY_COLORS: "1"
     strategy:
       fail-fast: false
-      max-parallel: 10
+      max-parallel: 6
       matrix:
-        os: [ubuntu-20.04, ubuntu-22.04]
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        os: [ubuntu-latest]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
 
     runs-on: ${{ matrix.os }}
 
