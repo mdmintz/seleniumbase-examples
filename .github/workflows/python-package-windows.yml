@@ -16,10 +16,10 @@ jobs:
       PY_COLORS: "1"
     strategy:
       fail-fast: false
-      max-parallel: 5
+      max-parallel: 3
       matrix:
         os: [windows-latest]
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.11", "3.12", "3.13"]
 
     runs-on: ${{ matrix.os }}
     steps:

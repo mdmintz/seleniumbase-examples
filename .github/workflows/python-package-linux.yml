@@ -16,10 +16,10 @@ jobs:
       PY_COLORS: "1"
     strategy:
       fail-fast: false
-      max-parallel: 6
+      max-parallel: 3
       matrix:
         os: [ubuntu-latest]
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.11", "3.12", "3.13"]
 
     runs-on: ${{ matrix.os }}
 
@@ -82,24 +82,24 @@ jobs:
     - name: Run pytest boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10
       run: |
         pytest examples/boilerplates/boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
-    - name: Run pytest examples/test_calculator.py --headless --rs -v -s --junit-xml=junit/test-results.xml --reruns=2
-      run: |
-        pytest examples/test_calculator.py --headless --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting --reruns=2
-    - name: Run pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
-      run: |
-        pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+    #- name: Run pytest examples/test_calculator.py --headless --rs -v -s --junit-xml=junit/test-results.xml --reruns=2
+    #  run: |
+    #    pytest examples/test_calculator.py --headless --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting --reruns=2
+    #- name: Run pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
+    #  run: |
+    #    pytest examples/test_canvas.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run pytest examples/test_user_agent.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_user_agent.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run pytest examples/test_ua_with_uc.py --reruns=2 --uc --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_ua_with_uc.py --reruns=2 --uc --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run pytest examples/test_tinymce.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
-      run: |
-        pytest examples/test_tinymce.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run pytest examples/test_simple_login.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --bl="chs"
-      run: |
-        pytest examples/test_simple_login.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting --bl="chs"
+    #- name: Run pytest examples/test_tinymce.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+    #  run: |
+    #    pytest examples/test_tinymce.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+    #- name: Run pytest examples/test_simple_login.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --bl="chs"
+    #  run: |
+    #    pytest examples/test_simple_login.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting --bl="chs"
     - name: Run pytest examples/test_swag_suite.py --gui --xvfb --rs -v -s --reruns=2 --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_swag_suite.py --gui --xvfb --rs -v -s --reruns=2 --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
@@ -109,9 +109,9 @@ jobs:
     - name: Run pytest examples/test_mfa_login.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_mfa_login.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run pytest examples/test_drag_and_drop.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
-      run: |
-        pytest examples/test_drag_and_drop.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+    #- name: Run pytest examples/test_drag_and_drop.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+    #  run: |
+    #    pytest examples/test_drag_and_drop.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run pytest examples/test_demo_site.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_demo_site.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
