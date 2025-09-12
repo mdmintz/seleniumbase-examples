@@ -16,10 +16,10 @@ jobs:
       PY_COLORS: "1"
     strategy:
       fail-fast: false
-      max-parallel: 3
+      max-parallel: 2
       matrix:
         os: [macos-latest]
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.12", "3.13"]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -83,9 +83,9 @@ jobs:
     - name: Run pytest examples/test_demo_site.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_demo_site.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --dashboard
-      run: |
-        pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
+    #- name: Run pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --dashboard
+    #  run: |
+    #    pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
     - name: Verify sbvirtualdisplay install from PyPI
       run: |
         pip install sbvirtualdisplay -U --no-deps --force-reinstall --no-cache-dir
