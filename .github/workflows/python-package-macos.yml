@@ -1,7 +1,7 @@
 name: CI Build 2 (macOS)
 on:
   schedule:
-    - cron: "48 */2 * * *"
+    - cron: "48 */4 * * *"
   push:
     branches: [ master ]
   pull_request:

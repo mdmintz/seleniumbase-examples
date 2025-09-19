@@ -1,7 +1,7 @@
 name: CI Build 3 (Windows)
 on:
   schedule:
-    - cron: "52 * * * *"
+    - cron: "52 */2 * * *"
   push:
     branches: [ master ]
   pull_request:
