@@ -69,6 +69,9 @@ jobs:
       run: |
         echo "import os; print(os.cpu_count())" > get_cpu_count.py
         python get_cpu_count.py
+    - name: Get platform info
+      run: |
+        python examples/platform_check.py
     - name: Run pytest boilerplate_test.py --chrome --xvfb --reruns=1
       if: runner.os == 'Linux'
       run: |
