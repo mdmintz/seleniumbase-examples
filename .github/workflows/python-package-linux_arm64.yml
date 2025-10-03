@@ -58,9 +58,12 @@ jobs:
       run: |
         seleniumbase
         sbase
-    - name: Install chromedriver
+    - name: Install chromium-browser
       run: |
-        seleniumbase install chromedriver
+        sudo apt-get install chromium-browser
+    - name: Install chromium-chromedriver
+      run: |
+        sudo apt-get install chromium-chromedriver
     - name: Make sure pytest is working
       run: |
         echo "def test_1(): pass" > nothing.py
@@ -76,9 +79,9 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         pytest examples/boilerplates/boilerplate_test.py --chrome --xvfb --reruns=1 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
-    - name: Run pytest boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10
+    - name: Run pytest boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10
       run: |
-        pytest examples/boilerplates/boilerplate_test.py --chrome --uc --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
+        pytest examples/boilerplates/boilerplate_test.py --chrome --headless --reruns=2 --reruns-delay=10 -v -s --junit-xml=junit/test-results.xml --with-db_reporting
     #- name: Run pytest examples/test_calculator.py --headless --rs -v -s --junit-xml=junit/test-results.xml --reruns=2
     #  run: |
     #    pytest examples/test_calculator.py --headless --rs -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting --reruns=2
@@ -88,34 +91,34 @@ jobs:
     - name: Run pytest examples/test_user_agent.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_user_agent.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run pytest examples/test_ua_with_uc.py --reruns=2 --uc --headless2 -v -s --junit-xml=junit/test-results.xml
+    - name: Run pytest examples/test_ua_with_uc.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_ua_with_uc.py --reruns=2 --uc --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    #- name: Run pytest examples/test_tinymce.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_ua_with_uc.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+    #- name: Run pytest examples/test_tinymce.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
     #  run: |
-    #    pytest examples/test_tinymce.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+    #    pytest examples/test_tinymce.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     #- name: Run pytest examples/test_simple_login.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --bl="chs"
     #  run: |
     #    pytest examples/test_simple_login.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting --bl="chs"
     - name: Run pytest examples/test_swag_suite.py --gui --xvfb --rs -v -s --reruns=2 --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_swag_suite.py --gui --xvfb --rs -v -s --reruns=2 --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run python examples/raw_sb.py --headless2 --uc
+    - name: Run python examples/raw_sb.py --headless2
       run: |
-        python examples/raw_sb.py --headless2 --uc
-    - name: Run pytest examples/test_mfa_login.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+        python examples/raw_sb.py --headless2
+    - name: Run pytest examples/test_mfa_login.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_mfa_login.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    #- name: Run pytest examples/test_drag_and_drop.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_mfa_login.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+    #- name: Run pytest examples/test_drag_and_drop.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
     #  run: |
-    #    pytest examples/test_drag_and_drop.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
-    - name: Run pytest examples/test_demo_site.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml
+    #    pytest examples/test_drag_and_drop.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+    - name: Run pytest examples/test_demo_site.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml
       run: |
-        pytest examples/test_demo_site.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page
-    - name: Run pytest examples/test_docs_site.py --reruns=2 --headless2 --uc --reruns=2 -v -s --junit-xml=junit/test-results.xml
+        pytest examples/test_demo_site.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Run pytest examples/test_docs_site.py --reruns=2 --headless2 --reruns=2 -v -s --junit-xml=junit/test-results.xml
       if: runner.os == 'Linux'
       run: |
-        pytest examples/test_docs_site.py --reruns=2 --headless2 --uc -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
+        pytest examples/test_docs_site.py --reruns=2 --headless2 -v -s --junit-xml=junit/test-results.xml --list-fail-page --with-db_reporting
     - name: Run pytest -m ready --reruns=2 --browser=chrome --rs --headless -v -s --dashboard
       run: |
         pytest -m ready --reruns=2 --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page --with-db_reporting
