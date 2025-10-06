@@ -49,6 +49,9 @@ jobs:
       run: |
         seleniumbase
         sbase
+    - name: Install chromium-browser
+      run: |
+        sudo apt-get install chromium-browser
     - name: Get CPU count
       run: |
         echo "import os; print(os.cpu_count())" > get_cpu_count.py
