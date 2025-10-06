@@ -100,8 +100,10 @@ class MyTestClass(BaseCase):
     def delete_all_boards(self):
         self.remove_popup_if_visible()
         for i in range(8):
-            if self.is_element_visible('[alt="Edit this board"]'):
-                self.click('[alt="Edit this board"]')
+            if self.is_element_visible(
+                '[aria-label="Edit this board"]'
+            ):
+                self.click('[aria-label="Edit this board"]')
                 self.click('button.danger')
                 self.click('div.cp-button-confirm')
                 self.sleep(0.1)
@@ -112,11 +114,15 @@ class MyTestClass(BaseCase):
         self.click("#kanban-addboard")
         self.sleep(0.4)
         self.remove_popup_if_visible()
-        num_boards = len(self.find_visible_elements('[alt="Edit this board"]'))
+        num_boards = len(self.find_visible_elements(
+            '[aria-label="Edit this board"]')
+        )
         self.sleep(0.1)
         self.remove_popup_if_visible()
         self.sleep(0.2)
-        self.click_nth_visible_element('[alt="Edit this board"]', num_boards)
+        self.click_nth_visible_element(
+            '[aria-label="Edit this board"]', num_boards
+        )
         self.sleep(0.4)
         self.remove_popup_if_visible()
         self.sleep(0.2)
