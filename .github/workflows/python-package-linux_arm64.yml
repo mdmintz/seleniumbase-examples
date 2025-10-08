@@ -31,7 +31,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip wheel setuptools pyautogui
+        python -m pip install --upgrade pip wheel setuptools pyautogui pipdeptree
         pip install -r requirements.txt
     - name: Install SeleniumBase
       run: |
@@ -52,6 +52,9 @@ jobs:
     - name: Install chromium-browser
       run: |
         sudo apt-get install chromium-browser
+    - name: List dependencies
+      run: |
+        pipdeptree
     - name: Get CPU count
       run: |
         echo "import os; print(os.cpu_count())" > get_cpu_count.py
