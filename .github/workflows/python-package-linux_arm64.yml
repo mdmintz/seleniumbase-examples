@@ -65,3 +65,6 @@ jobs:
     - name: Run python raw_mfa_login.py
       run: |
         python examples/raw_mfa_login.py
+    - name: Run python raw_cdp_copilot.py
+      run: |
+        python examples/raw_cdp_copilot.py
