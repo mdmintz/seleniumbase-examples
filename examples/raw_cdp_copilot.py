@@ -32,6 +32,9 @@ try:
     file_name = "copilot_results.html"
     sb.save_as_html(file_name, folder)
     print('"./%s/%s" was saved!' % (folder, file_name))
+    print()
+    text = sb.get_text('[data-testid="highlighted-chats"]')
+    print(text.replace("  ", " ").replace(" . ", ". "))
     sb.driver.stop()
 except Exception:
     print("Something failed!")
