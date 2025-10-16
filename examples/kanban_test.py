@@ -1,5 +1,6 @@
-""" Kanban board testing example """
+"""Kanban board testing example"""
 from seleniumbase import BaseCase
+BaseCase.main(__name__, __file__)
 
 
 class MyTestClass(BaseCase):
