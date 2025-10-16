@@ -60,6 +60,7 @@ class MyTestClass(BaseCase):
         self.assert_element_visible('#kanban-trash')
         self.set_attribute('#kanban-trash', 'class', 'kanban-trash')
         self.assert_element_not_visible('#kanban-trash')
+        self.sleep(1)
 
     def remove_popup_if_visible(self):
         if self.is_element_visible("div.cp-corner-dontshow span"):

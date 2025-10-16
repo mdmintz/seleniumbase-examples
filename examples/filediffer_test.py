@@ -1,9 +1,7 @@
-"""
-Testing https://www.developsense.com/exercises/fda/filediffer.html
-"""
-
+"""Testing https://www.developsense.com/exercises/fda/filediffer.html"""
 import os
 from seleniumbase import BaseCase
+BaseCase.main(__name__, __file__)
 
 
 class MyTestClass(BaseCase):
