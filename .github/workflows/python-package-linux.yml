@@ -125,6 +125,9 @@ jobs:
     - name: Run pytest -m ready --reruns=2 --browser=chrome --rs --headless -v -s --dashboard
       run: |
         pytest -m ready --reruns=2 --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page --with-db_reporting
+    - name: Run python raw_cdp_in_series.py --debug
+      run: |
+        python examples/raw_cdp_in_series.py --debug
     - name: Query MySQL Results
       if: runner.os == 'Linux'
       run: |
