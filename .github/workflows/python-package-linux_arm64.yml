@@ -68,6 +68,9 @@ jobs:
     - name: Run python raw_cdp_copilot.py --debug
       run: |
         python examples/raw_cdp_copilot.py --debug
+    - name: Run python raw_cdp_reddit.py --debug
+      run: |
+        python examples/raw_cdp_reddit.py --debug
     - name: Upload artifacts
       uses: actions/upload-artifact@v6
       with:
