@@ -83,6 +83,12 @@ jobs:
     - name: Run pytest examples/test_demo_site.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml
       run: |
         pytest examples/test_demo_site.py --reruns=2 --headless -v -s --junit-xml=junit/test-results.xml --list-fail-page
+    - name: Install chromium
+      run: |
+        sbase get chromium
+    - name: Run python raw_cdp_reddit.py --debug
+      run: |
+        python examples/raw_cdp_reddit.py --debug
     #- name: Run pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --dashboard
     #  run: |
     #    pytest -m ready --reruns=1 --browser=chrome --rs --headless -v -s --junit-xml=junit/test-results.xml --dashboard --list-fail-page
