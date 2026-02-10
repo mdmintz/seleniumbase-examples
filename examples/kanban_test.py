@@ -11,7 +11,7 @@ class MyTestClass(BaseCase):
         self.open("https://cryptpad.fr/kanban/")
         self.switch_to_frame("iframe#sbox-iframe")
         self.click("button.cp-corner-cancel", timeout=30)
-        self.click("div.cp-corner-dontshow span")
+        self.click("div.cp-corner-dontshow svg")
 
         self.delete_all_boards()
         self.add_board("To Do")
@@ -22,9 +22,9 @@ class MyTestClass(BaseCase):
         if not self.popup_removed:
             self.sleep(1)
             print("Waiting to close pop-up...")
-            if self.is_element_visible("div.cp-corner-dontshow span"):
+            if self.is_element_visible("div.cp-corner-dontshow svg"):
                 self.sleep(0.1)
-                self.click("div.cp-corner-dontshow span")
+                self.click("div.cp-corner-dontshow svg")
                 print("Pop-up closed!")
                 self.sleep(0.3)
 
@@ -63,8 +63,8 @@ class MyTestClass(BaseCase):
         self.sleep(1)
 
     def remove_popup_if_visible(self):
-        if self.is_element_visible("div.cp-corner-dontshow span"):
-            self.click("div.cp-corner-dontshow span")
+        if self.is_element_visible("div.cp-corner-dontshow svg"):
+            self.click("div.cp-corner-dontshow svg")
             self.popup_removed = True
             self.sleep(0.3)
 
@@ -141,10 +141,13 @@ class MyTestClass(BaseCase):
         self.sleep(0.2)
         self.remove_popup_if_visible()
         self.wait_for_element(
-            'div[data-id="%s"] i.cptools-add-bottom' % board_id)
+            'div[data-id="%s"] [data-lucide*="add-bottom"]' % board_id
+        )
         self.sleep(0.05)
         self.remove_popup_if_visible()
-        self.js_click('div[data-id="%s"] i.cptools-add-bottom' % board_id)
+        self.js_click(
+            'div[data-id="%s"] [data-lucide*="add-bottom"]' % board_id
+        )
         self.sleep(0.3)
         self.js_type('input#kanban-edit', name)
         self.sleep(0.2)
