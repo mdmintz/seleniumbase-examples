@@ -128,6 +128,9 @@ jobs:
     - name: Run python raw_cdp_in_series.py --debug
       run: |
         python examples/raw_cdp_in_series.py --debug
+    - name: Run python raw_cookies.py --debug
+      run: |
+        python examples/raw_cookies.py --debug
     - name: Query MySQL Results
       if: runner.os == 'Linux'
       run: |
@@ -147,3 +150,9 @@ jobs:
     - name: Verify seleniumbase install from PyPI
       run: |
         pip install seleniumbase -U --no-deps --force-reinstall --no-cache-dir
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: seleniumbase-artifacts
+        path: |
+          ./latest_logs/
