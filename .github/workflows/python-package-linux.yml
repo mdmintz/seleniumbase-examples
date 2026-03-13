@@ -150,9 +150,9 @@ jobs:
     - name: Verify seleniumbase install from PyPI
       run: |
         pip install seleniumbase -U --no-deps --force-reinstall --no-cache-dir
-    - name: Upload artifacts - ${{ matrix.os }} - ${{ matrix.python-version }}
+    - name: Upload artifacts
       uses: actions/upload-artifact@v6
       with:
-        name: seleniumbase-artifacts
+        name: seleniumbase-artifacts-${{ matrix.os }}-${{ matrix.python-version }}
         path: |
           ./latest_logs/
