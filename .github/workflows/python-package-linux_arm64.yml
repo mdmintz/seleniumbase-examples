@@ -49,9 +49,9 @@ jobs:
       run: |
         seleniumbase
         sbase
-    - name: Install chromium-browser
+    - name: Install chromium
       run: |
-        sudo apt-get install chromium-browser
+        sudo apt-get install chromium
     - name: List dependencies
       run: |
         pipdeptree
