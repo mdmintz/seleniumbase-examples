@@ -20,4 +20,4 @@ class DocsSiteTests(BaseCase):
         self.click('a[href$="/method_summary/"]')
         self.assert_text("API Reference", "h1")
         self.click('img[alt="logo"]')
-        self.assert_text("SeleniumBase", "h1")
+        self.assert_element('img[alt="SeleniumBase"]')
