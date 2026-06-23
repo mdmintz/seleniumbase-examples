@@ -1,0 +1,47 @@
+name: Leak Check (macOS)
+on:
+  workflow_dispatch:
+    branches:
+
+jobs:
+  build:
+
+    env:
+      PY_COLORS: "1"
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        os: [macos-latest]
+        python-version: ["3.13"]
+
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v6
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install --upgrade pip
+        pip install --upgrade wheel
+    - name: Install SeleniumBase
+      run: |
+        pip install --force-reinstall --no-cache-dir git+https://github.com/montovaneli/SeleniumBase.git@leak-fix
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        # Stop the build if there are flake8 issues
+        flake8 . --count --show-source --statistics --exclude=temp
+    - name: Check the console scripts interface
+      run: |
+        seleniumbase
+    - name: Install chromedriver and uc_driver
+      run: |
+        seleniumbase install chromedriver
+        seleniumbase install uc_driver
+    - name: Run python examples/check_for_leaks.py --debug
+      run: |
+        python examples/check_for_leaks.py --debug
