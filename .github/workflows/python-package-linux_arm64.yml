@@ -1,7 +1,7 @@
 name: CI Build 4 (Ubuntu ARM64)
 on:
   schedule:
-    - cron: "26 * * * *"
+    - cron: "26/3 * * * *"
   push:
     branches: [ master ]
   pull_request:
@@ -51,7 +51,7 @@ jobs:
         sbase
     - name: Install chromium
       run: |
-        sudo apt-get install chromium
+        sudo apt install chromium-browser
     - name: List dependencies
       run: |
         pipdeptree
