@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     env:
       PY_COLORS: "1"
     strategy:
@@ -20,9 +19,20 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         python-version: ["3.12", "3.13", "3.14"]
-
     runs-on: ${{ matrix.os }}
-
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test_db
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
     steps:
     - uses: actions/checkout@v6
     - name: Set up Python ${{ matrix.python-version }}
