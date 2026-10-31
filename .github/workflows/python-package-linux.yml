@@ -42,12 +42,12 @@ jobs:
     - name: Configure MySQL DB
       if: runner.os == 'Linux'
       run: |
-        sudo /etc/init.d/mysql start
-        mysql -e 'CREATE DATABASE IF NOT EXISTS test_db;' -uroot -proot
+        sudo apt-get update
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-client
+        mysql --protocol=tcp -h 127.0.0.1 -P 3306 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS test_db;"
         wget https://raw.githubusercontent.com/seleniumbase/SeleniumBase/master/seleniumbase/core/create_db_tables.sql
-        sudo mysql -h 127.0.0.1 -uroot -proot test_db < create_db_tables.sql
-        sudo mysql -e 'ALTER USER "root"@"localhost" IDENTIFIED BY "test";' -uroot -proot
-        sudo service mysql restart
+        mysql --protocol=tcp -h 127.0.0.1 -P 3306 -uroot -proot test_db < create_db_tables.sql
+        mysql --protocol=tcp -h 127.0.0.1 -P 3306 -uroot -proot -e 'ALTER USER "root"@"%" IDENTIFIED BY "test"; FLUSH PRIVILEGES;'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip wheel setuptools
