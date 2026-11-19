@@ -11,7 +11,6 @@ class MyTestClass(BaseCase):
         self.open("https://cryptpad.fr/kanban/")
         self.switch_to_frame("iframe#sbox-iframe")
         self.click("button.cp-corner-cancel", timeout=30)
-        self.click("div.cp-corner-dontshow svg")
 
         self.delete_all_boards()
         self.add_board("To Do")
@@ -21,11 +20,9 @@ class MyTestClass(BaseCase):
 
         if not self.popup_removed:
             self.sleep(1)
-            print("Waiting to close pop-up...")
             if self.is_element_visible("div.cp-corner-dontshow svg"):
                 self.sleep(0.1)
                 self.click("div.cp-corner-dontshow svg")
-                print("Pop-up closed!")
                 self.sleep(0.3)
 
         # Add items to the first board
